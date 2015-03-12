@@ -1,0 +1,73 @@
+/*******************************************************************************
+ * Copyright (c) 2014 Daniel Murygin.
+ *
+ * This program is free software: you can redistribute it and/or 
+ * modify it under the terms of the GNU Lesser General Public License 
+ * as published by the Free Software Foundation, either version 3 
+ * of the License, or (at your option) any later version.
+ * This program is distributed in the hope that it will be useful,    
+ * but WITHOUT ANY WARRANTY; without even the implied warranty 
+ * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+ * See the GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program. 
+ * If not, see <http://www.gnu.org/licenses/>.
+ * 
+ * Contributors:
+ *     Daniel Murygin <dm[at]sernet[dot]de> - initial API and implementation
+ ******************************************************************************/
+package org.v2020.data.entity;
+
+import java.util.HashSet;
+import java.util.Set;
+
+import org.neo4j.graphdb.Direction;
+import org.springframework.data.neo4j.annotation.Fetch;
+import org.springframework.data.neo4j.annotation.RelatedTo;
+/**
+ * An internal node (also known as an inner node, inode for short, or branch node) 
+ * is any node of a tree that has child nodes.
+ * 
+ * @author Daniel Murygin <dm[at]sernet[dot]de>
+ */
+public class InternalNode extends Node {
+
+    @RelatedTo(type = "CHILD", direction = Direction.OUTGOING)
+    private @Fetch Set<Node> childNotes;
+    
+    public InternalNode() {
+        super();
+    }
+    
+    public InternalNode(String title) {
+        super(title);
+    }
+
+    public Set<Node> getChildNotes() {
+        if (childNotes == null) {
+            childNotes = new HashSet<Node>();
+        }
+        return childNotes;
+    }
+    
+    public void addChildNote(Node node) {     
+        getChildNotes().add(node);
+    }
+     
+    public boolean hasChildNotes() {
+        return !(getChildNotes().isEmpty());
+    }
+    
+    public String toStringWithChildNotes() {
+        StringBuilder sb = new StringBuilder();     
+        sb.append(super.toString());
+        if(hasChildNotes()) {
+            sb.append(", child notes: ");
+            for (Node childNote : childNotes) {
+                sb.append(childNote.toString());
+            }         
+        } 
+        return sb.toString();
+    }
+}
