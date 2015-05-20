@@ -55,7 +55,7 @@ public class VnaImportTest {
 
     private static final Logger LOG = LoggerFactory.getLogger(VnaImportTest.class);
     
-    public static final String RISK_CATALOG_FILE_NAME = "verinice_Risk_Catalogue_EN.vna";
+    public static final String RISK_CATALOG_FILE_NAME = "BusinessImpactInheritenceTest.vna";
     
     @Autowired
     IVnaImport vnaImport;
