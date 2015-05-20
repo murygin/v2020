@@ -11,7 +11,7 @@
   <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.2.2.RELEASE</version>
+        <version>1.2.3.RELEASE</version>
   </parent>
   <packaging>pom</packaging>
   
@@ -38,6 +38,11 @@
         <artifactId>v2020-data-xml</artifactId>
         <version>${project.version}</version>
       </dependency>
+      <dependency>
+          <groupId>org.v2020</groupId>
+          <artifactId>v2020-service</artifactId>
+          <version>${project.version}</version>
+      </dependency> 
       <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-logging</artifactId>
@@ -92,7 +97,12 @@
     <module>v2020-data-neo4j</module>
     <module>v2020-service</module>
     <module>v2020-vna-import</module>
+    <module>v2020-rest</module>
   </modules>
+
+  <properties>
+    <java.version>1.7</java.version>
+  </properties>
 
   <build>
     <pluginManagement>
