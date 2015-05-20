@@ -23,7 +23,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.neo4j.graphdb.Direction;
-import org.springframework.data.neo4j.annotation.Fetch;
 import org.springframework.data.neo4j.annotation.RelatedTo;
 /**
  * An internal node (also known as an inner node, inode for short, or branch node) 
@@ -34,7 +33,7 @@ import org.springframework.data.neo4j.annotation.RelatedTo;
 public class InternalNode extends Node {
 
     @RelatedTo(type = "CHILD", direction = Direction.OUTGOING)
-    private @Fetch Set<Node> childNotes;
+    private Set<Node> childNotes;
     
     public InternalNode() {
         super();

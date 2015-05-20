@@ -38,7 +38,7 @@ public class Controller {
      * @return The document file
      */
     @RequestMapping(value = "/node/{id}", method = RequestMethod.GET)
-    public Node getNode(@PathVariable Long id) {         
+    public <N extends Node> N getNode(@PathVariable Long id) {         
         return getNodeService().getNode(id);
     }
 

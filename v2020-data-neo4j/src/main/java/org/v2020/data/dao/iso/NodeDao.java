@@ -58,8 +58,6 @@ public class NodeDao implements INodeDao {
     @Override
     public Node get(Long id) {
         return nodeRepository.findOne(id);
-    }
-    
-    
+    }  
 
 }

@@ -30,6 +30,6 @@ public interface INodeService {
     
     void createRelationship(Long startNodeId, Long endNodeId, String type);
     
-    Node getNode(Long id);
+    <N extends Node> N getNode(Long id);
     
 }
