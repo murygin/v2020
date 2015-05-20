@@ -27,4 +27,6 @@ import org.v2020.data.entity.Node;
 public interface INodeDao {
 
     <N extends Node> N save(N node);
+    
+    Node get(Long id);
 }

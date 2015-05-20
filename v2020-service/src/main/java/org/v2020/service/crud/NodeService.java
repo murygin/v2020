@@ -52,4 +52,12 @@ public class NodeService implements INodeService {
     public void createRelationship(Long startNodeId, Long endNodeId, String type) {
         relationshipDao.createRelationship(startNodeId, endNodeId, type);     
     }
+
+    /* (non-Javadoc)
+     * @see org.v2020.service.crud.INodeService#getNode(java.lang.Long)
+     */
+    @Override
+    public Node getNode(Long id) {
+        return nodeDao.get(id);
+    }
 }

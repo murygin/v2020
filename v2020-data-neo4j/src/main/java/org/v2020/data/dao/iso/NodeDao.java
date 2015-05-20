@@ -43,9 +43,21 @@ public class NodeDao implements INodeDao {
     @Autowired
     GraphDatabase graphDatabase;
     
+    /* (non-Javadoc)
+     * @see org.v2020.data.dao.iso.INodeDao#save(org.v2020.data.entity.Node)
+     */
+    @Override
     public <N extends Node> N save(N node) {
         return nodeRepository.save(node);
   
+    }
+
+    /* (non-Javadoc)
+     * @see org.v2020.data.dao.iso.INodeDao#get(java.lang.Long)
+     */
+    @Override
+    public Node get(Long id) {
+        return nodeRepository.findOne(id);
     }
     
     
