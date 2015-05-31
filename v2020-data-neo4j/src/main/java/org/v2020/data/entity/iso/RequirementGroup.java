@@ -27,7 +27,6 @@ import org.v2020.data.entity.InternalNode;
  */
 public class RequirementGroup extends InternalNode {
     
-    public static final String TYPE = "threatGroup";
     public RequirementGroup() {
         super();
     }
@@ -35,5 +34,4 @@ public class RequirementGroup extends InternalNode {
     public RequirementGroup(String title) {
         super(title);
     }
-
 }

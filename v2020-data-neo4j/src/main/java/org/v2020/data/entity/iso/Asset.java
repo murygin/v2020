@@ -27,7 +27,6 @@ import org.v2020.data.entity.ExternalNode;
  */
 public class Asset extends ExternalNode {
 
-    public static final String TYPE = "asset";
     public static final String EDGE_ASSET_CONTROL = "rel_asset_control";
     
     public Asset() {
@@ -37,7 +36,6 @@ public class Asset extends ExternalNode {
     public Asset(String title) {
         super();
         setTitle(title);
-    }
-    
+    }     
     
 }

@@ -32,6 +32,5 @@ public class Person extends ExternalNode {
 
     public Person(String title) {
         super(title);
-    }
-
+    }   
 }

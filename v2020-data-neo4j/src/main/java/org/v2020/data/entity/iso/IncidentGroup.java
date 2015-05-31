@@ -33,6 +33,6 @@ public class IncidentGroup extends InternalNode {
 
     public IncidentGroup(String title) {
         super(title);
-    }
+    }   
 
 }

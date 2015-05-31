@@ -19,11 +19,17 @@
  ******************************************************************************/
 package org.v2020.data.dao.iso;
 
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.neo4j.conversion.Result;
 import org.springframework.data.neo4j.core.GraphDatabase;
 import org.springframework.data.neo4j.template.Neo4jOperations;
 import org.springframework.stereotype.Repository;
 import org.v2020.data.entity.Node;
+import org.v2020.data.entity.iso.Organization;
 
 /**
  * The @Repository annotation is a marker for any class that fulfills 
@@ -58,6 +64,10 @@ public class NodeDao implements INodeDao {
     @Override
     public Node get(Long id) {
         return nodeRepository.findOne(id);
-    }  
+    }
+    
+    public <N extends Node> List<N> findType(String className) {       
+        return (List<N>) nodeRepository.findByNodeType(className);
+    }
 
 }

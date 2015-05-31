@@ -32,6 +32,6 @@ public class Record extends ExternalNode {
 
     public Record(String title) {
         super(title);
-    }
+    }   
 
 }

@@ -33,6 +33,6 @@ public class ExceptionGroup extends InternalNode {
 
     public ExceptionGroup(String title) {
         super(title);
-    }
-
+    }   
+   
 }

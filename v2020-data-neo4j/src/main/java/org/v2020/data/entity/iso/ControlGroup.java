@@ -26,16 +26,13 @@ import org.v2020.data.entity.InternalNode;
  * @author Daniel Murygin <dm[at]sernet[dot]de>
  */
 public class ControlGroup extends InternalNode {
-    
-    public static final String TYPE = "controlGroup";
-    
+       
     public ControlGroup() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
     public ControlGroup(String title) {
         super(title);
-    }
+    }   
 
 }

@@ -34,7 +34,6 @@ public class Evidence extends ExternalNode {
     public Evidence(String title) {
         super();
         setTitle(title);
-    }
-    
+    }   
     
 }

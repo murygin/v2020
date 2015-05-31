@@ -20,8 +20,10 @@
 package org.v2020.data.entity;
 
 import java.util.HashSet;
+import java.util.Hashtable;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.neo4j.graphdb.Direction;
@@ -29,6 +31,7 @@ import org.springframework.data.annotation.Transient;
 import org.springframework.data.neo4j.annotation.Fetch;
 import org.springframework.data.neo4j.annotation.GraphId;
 import org.springframework.data.neo4j.annotation.GraphProperty;
+import org.springframework.data.neo4j.annotation.Indexed;
 import org.springframework.data.neo4j.annotation.NodeEntity;
 import org.springframework.data.neo4j.annotation.RelatedTo;
 import org.springframework.data.neo4j.annotation.RelatedToVia;
@@ -66,6 +69,8 @@ public class Node {
 
     private String title;
     
+    private String className;
+    
     DynamicProperties properties = new DynamicPropertiesContainer();
     
     @RelatedTo(type="CHILD", direction = Direction.INCOMING)
@@ -77,11 +82,13 @@ public class Node {
     
     public Node() {
         super();
+        this.className = this.getClass().getName();
     }
     
     public Node(String title) {
         super();
         this.title = title;
+        this.className = this.getClass().getName();
     }
 
     public Long getId() {
@@ -99,13 +106,21 @@ public class Node {
     public void setTitle(String title) {
         this.title = title;
     }
-    
+
     public void addProperty(String key, Object value) {
         properties.setProperty(key, value);
     }
     
     public Object getProperty(String key) {
         return properties.getProperty(key);
+    }
+    
+    public Map<String, Object> getProperties() {
+        Map<String, Object> map = new Hashtable<String, Object>();
+        for (String key : properties.getPropertyKeys()) {
+            map.put(key, getProperty(key));
+        }
+        return map;
     }
     
     public Node getParent() {

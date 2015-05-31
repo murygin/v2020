@@ -33,6 +33,6 @@ public class InterviewGroup extends InternalNode {
 
     public InterviewGroup(String title) {
         super(title);
-    }
+    }   
 
 }

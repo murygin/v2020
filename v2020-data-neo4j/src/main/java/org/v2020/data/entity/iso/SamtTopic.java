@@ -33,5 +33,4 @@ public class SamtTopic extends ExternalNode {
     public SamtTopic(String title) {
         super(title);
     }
-
 }

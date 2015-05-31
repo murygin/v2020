@@ -27,13 +27,12 @@ import org.v2020.data.entity.InternalNode;
  */
 public class ScenarioGroup extends InternalNode {
     
-    public static final String TYPE = "scenarioGroup";
     public ScenarioGroup() {
         super();
     }
 
     public ScenarioGroup(String title) {
         super(title);
-    }
-
+    } 
+    
 }

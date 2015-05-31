@@ -25,8 +25,6 @@ import org.v2020.data.entity.InternalNode;
  * @author Daniel Murygin <dm[at]sernet[dot]de>
  */
 public class Organization extends InternalNode {
-
-    public static final String TYPE = "organization";
     
     public Organization() {
         super();
@@ -34,6 +32,6 @@ public class Organization extends InternalNode {
 
     public Organization(String title) {
         super(title);
-    }
-    
+    }   
+       
 }

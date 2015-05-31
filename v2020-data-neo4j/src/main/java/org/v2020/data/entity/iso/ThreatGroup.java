@@ -27,13 +27,12 @@ import org.v2020.data.entity.InternalNode;
  */
 public class ThreatGroup extends InternalNode {
     
-    public static final String TYPE = "threatGroup";
     public ThreatGroup() {
         super();
     }
 
     public ThreatGroup(String title) {
         super(title);
-    }
-
+    } 
+    
 }

@@ -30,8 +30,6 @@ import org.v2020.data.entity.ExternalNode;
  */
 public class Scenario extends ExternalNode {
     
-    public static final String TYPE = "scenario";
-    
     public Scenario() {
         super();
     }
@@ -57,5 +55,4 @@ public class Scenario extends ExternalNode {
     public boolean hasAScenarioAssets() {
         return !(getScenarioAssets().isEmpty());
     }
-
 }

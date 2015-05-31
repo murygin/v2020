@@ -33,6 +33,6 @@ public class PersonGroup extends InternalNode {
 
     public PersonGroup(String title) {
         super(title);
-    }
+    }   
 
 }

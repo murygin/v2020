@@ -34,5 +34,4 @@ public class RecordGroup extends InternalNode {
     public RecordGroup(String title) {
         super(title);
     }
-
 }

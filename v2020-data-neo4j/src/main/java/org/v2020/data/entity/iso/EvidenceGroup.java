@@ -33,6 +33,6 @@ public class EvidenceGroup extends InternalNode {
 
     public EvidenceGroup(String title) {
         super(title);
-    }
+    }   
  
 }

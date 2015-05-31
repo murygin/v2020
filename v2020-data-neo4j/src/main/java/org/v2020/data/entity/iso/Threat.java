@@ -25,13 +25,13 @@ import org.v2020.data.entity.ExternalNode;
  * @author Daniel Murygin <dm[at]sernet[dot]de>
  */
 public class Threat extends ExternalNode {
-    public static final String TYPE = "threat";
+    
     public Threat() {
         super();
     }
 
     public Threat(String title) {
         super(title);
-    }
-
+    } 
+    
 }

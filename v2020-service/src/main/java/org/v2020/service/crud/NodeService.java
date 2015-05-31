@@ -19,11 +19,15 @@
  ******************************************************************************/
 package org.v2020.service.crud;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.v2020.data.dao.iso.INodeDao;
 import org.v2020.data.dao.iso.IRelationshipDao;
 import org.v2020.data.entity.Node;
+import org.v2020.data.entity.iso.Asset;
+import org.v2020.data.entity.iso.Organization;
 
 /**
  * @author Daniel Murygin <dm[at]sernet[dot]de>
@@ -57,7 +61,25 @@ public class NodeService implements INodeService {
      * @see org.v2020.service.crud.INodeService#getNode(java.lang.Long)
      */
     @Override
-    public Node getNode(Long id) {
+    public <N extends Node> N getNode(Long id) {
         return nodeDao.get(id);
     }
+
+    /* (non-Javadoc)
+     * @see org.v2020.service.crud.INodeService#getOrganizations()
+     */
+    @Override
+    public List<Organization> getOrganizations() {       
+        return nodeDao.findType(Organization.class.getName());
+    }
+    
+    /* (non-Javadoc)
+     * @see org.v2020.service.crud.INodeService#getOrganizations()
+     */
+    @Override
+    public List<Asset> getAssets() {       
+        return nodeDao.findType(Asset.class.getName());
+    }
+
+
 }

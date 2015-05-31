@@ -32,6 +32,6 @@ public class Interview extends ExternalNode {
 
     public Interview(String title) {
         super(title);
-    }
-
+    }   
+    
 }

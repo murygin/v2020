@@ -32,6 +32,6 @@ public class Exception extends ExternalNode {
 
     public Exception(String title) {
         super(title);
-    }
-
+    }   
+   
 }

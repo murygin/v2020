@@ -33,6 +33,6 @@ public class FindingGroup extends InternalNode {
 
     public FindingGroup(String title) {
         super(title);
-    }
+    }   
 
 }

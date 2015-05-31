@@ -1,6 +1,8 @@
 package org.v2020.rest;
 
 
+import java.util.List;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -8,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.v2020.data.entity.Node;
+import org.v2020.data.entity.iso.Asset;
+import org.v2020.data.entity.iso.Organization;
 import org.v2020.service.crud.INodeService;
 
 /**
@@ -30,16 +34,36 @@ public class Controller {
     INodeService nodeService;
    
     /**
-     * Returns the document file from the archive with the given UUID.
+     * Returns the node with the given id.
      * 
      * Url: /node/{id} [GET]
      * 
-     * @param id The UUID of a document
-     * @return The document file
+     * @param id The id of a node
+     * @return The node
      */
     @RequestMapping(value = "/node/{id}", method = RequestMethod.GET)
     public <N extends Node> N getNode(@PathVariable Long id) {         
         return getNodeService().getNode(id);
+    }
+    
+    /**
+     * Url: /organizations [GET]
+     * 
+     * @return All organizations
+     */
+    @RequestMapping(value = "/organizations", method = RequestMethod.GET)
+    public List<Organization> getOrganizations() {         
+        return getNodeService().getOrganizations();
+    }
+    
+    /**
+     * Url: /assets [GET]
+     * 
+     * @return All assets
+     */
+    @RequestMapping(value = "/assets", method = RequestMethod.GET)
+    public List<Asset> getAssets() {         
+        return getNodeService().getAssets();
     }
 
     public INodeService getNodeService() {

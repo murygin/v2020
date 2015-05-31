@@ -19,6 +19,8 @@
  ******************************************************************************/
 package org.v2020.data.dao.iso;
 
+import java.util.List;
+
 import org.v2020.data.entity.Node;
 
 /**
@@ -28,5 +30,7 @@ public interface INodeDao {
 
     <N extends Node> N save(N node);
     
-    Node get(Long id);
+    <N extends Node> N get(Long id);
+    
+    <N extends Node> List<N> findType(String className);
 }

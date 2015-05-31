@@ -9,6 +9,8 @@ import static org.junit.Assert.assertFalse;
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
@@ -247,6 +249,30 @@ public class Neo4jDaoTest {
         deleteNodeIfConfigured(riskCatalogue);
     }
     
+    @Test
+    public void testFindByClass() {
+        int n = 10;
+        List<Organization> orgCreateList = new LinkedList<Organization>();
+        for (int i = 0; i < n; i++) {
+            orgCreateList.add(createOrganization());
+            
+        }             
+        List<Node> orgList = nodeDao.findType(Organization.class.getName());
+        assertNotNull("Organization list is null", orgList);
+        assertTrue("Organization list size is not: " + n, orgList.size()>=n);
+        for (Node org : orgCreateList) {
+            assertTrue("Org not found: " + org.getTitle(),orgList.contains(org));
+            deleteNodeIfConfigured(org);
+        }
+             
+    }
+
+    private Organization createOrganization() {
+        String title = UUID.randomUUID().toString();
+        Organization organization = new Organization(title);
+        return saveOrganisation(organization);
+    }
+    
     //@Transactional
     private void saveNode(Node control) {
         nodeDao.save(control);
@@ -291,4 +317,6 @@ public class Neo4jDaoTest {
     private long getRandom(int max) {
        return Math.round(Math.random()*max);
     }
+    
+    
 }

@@ -87,8 +87,12 @@ public class ObjectImportThread implements Callable<ObjectImportContext> {
             if(isProperty(syncAttribute)) {
                 String name = syncAttribute.getName();
                 MapAttributeType mapAttribute = getMapAttribute(mapObject, name);
-                List<String> valueList = syncAttribute.getValue();
-                node.addProperty(mapAttribute.getIntId(), convertValue(valueList));
+                if(mapAttribute!=null) {
+                    List<String> valueList = syncAttribute.getValue();
+                    node.addProperty(mapAttribute.getIntId(), convertValue(valueList));
+                } else {
+                    LOG.warn("MapAttributeType not found, name: " + name);
+                }
             }
         }
     }

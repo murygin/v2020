@@ -32,6 +32,6 @@ public class Process extends ExternalNode {
 
     public Process(String title) {
         super(title);
-    }
-
+    }   
+    
 }

@@ -32,6 +32,6 @@ public class Finding extends ExternalNode {
 
     public Finding(String title) {
         super(title);
-    }
-
+    }   
+    
 }
