@@ -257,7 +257,7 @@ public class Neo4jDaoTest {
             orgCreateList.add(createOrganization());
             
         }             
-        List<Node> orgList = nodeDao.findType(Organization.class.getName());
+        List<Node> orgList = nodeDao.findByClass(Organization.class.getName());
         assertNotNull("Organization list is null", orgList);
         assertTrue("Organization list size is not: " + n, orgList.size()>=n);
         for (Node org : orgCreateList) {

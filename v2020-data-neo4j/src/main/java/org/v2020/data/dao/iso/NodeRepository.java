@@ -21,5 +21,5 @@ public interface NodeRepository extends CrudRepository<Node, Long> {
     //@Query("START n=node:className(className={0}) RETURN n")
     //@Query("MATCH (n:Node (node:className:{0})) RETURN n")
     @Query("START n=node(*) MATCH (n) WHERE n.className={0} RETURN n")
-    List<Node> findByNodeType(String nodeType);
+    List<Node> findByClass(String nodeType);
 }

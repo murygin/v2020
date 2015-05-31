@@ -32,5 +32,5 @@ public interface INodeDao {
     
     <N extends Node> N get(Long id);
     
-    <N extends Node> List<N> findType(String className);
+    <N extends Node> List<N> findByClass(String className);
 }

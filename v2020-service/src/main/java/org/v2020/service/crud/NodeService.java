@@ -70,7 +70,7 @@ public class NodeService implements INodeService {
      */
     @Override
     public List<Organization> getOrganizations() {       
-        return nodeDao.findType(Organization.class.getName());
+        return nodeDao.findByClass(Organization.class.getName());
     }
     
     /* (non-Javadoc)
@@ -78,7 +78,7 @@ public class NodeService implements INodeService {
      */
     @Override
     public List<Asset> getAssets() {       
-        return nodeDao.findType(Asset.class.getName());
+        return nodeDao.findByClass(Asset.class.getName());
     }
 
 

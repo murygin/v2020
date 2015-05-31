@@ -66,8 +66,11 @@ public class NodeDao implements INodeDao {
         return nodeRepository.findOne(id);
     }
     
-    public <N extends Node> List<N> findType(String className) {       
-        return (List<N>) nodeRepository.findByNodeType(className);
+    /* (non-Javadoc)
+     * @see org.v2020.data.dao.iso.INodeDao#findType(java.lang.String)
+     */
+    public <N extends Node> List<N> findByClass(String className) {       
+        return (List<N>) nodeRepository.findByClass(className);
     }
 
 }
