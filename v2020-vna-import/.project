@@ -5,6 +5,7 @@
   <projects>
     <project>v2020-service</project>
     <project>v2020-data-neo4j</project>
+    <project>jgrapht-neo4j-client</project>
     <project>v2020-data-xml</project>
   </projects>
   <buildSpec>
