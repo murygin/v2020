@@ -98,6 +98,7 @@
     <module>v2020-service</module>
     <module>v2020-vna-import</module>
     <module>v2020-rest</module>
+    <module>v2020-primefaces</module>
   </modules>
 
   <properties>
@@ -125,6 +126,11 @@
       <name>Spring Releases</name>
       <url>https://repo.spring.io/libs-release</url>
     </repository>
+<repository>
+    <id>git-murygin</id>
+    <name>Murygin's Git based repo</name>
+    <url>https://github.com/murygin/maven-repository/raw/master/</url>
+</repository>
   </repositories>
 
   <pluginRepositories>
