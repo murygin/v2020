@@ -2,9 +2,7 @@
 <projectDescription>
   <name>v2020-data-neo4j</name>
   <comment>Spring Boot Starter Parent. NO_M2ECLIPSE_SUPPORT: Project files created with the maven-eclipse-plugin are not supported in M2Eclipse.</comment>
-  <projects>
-    <project>jgrapht-neo4j-client</project>
-  </projects>
+  <projects/>
   <buildSpec>
     <buildCommand>
       <name>org.eclipse.jdt.core.javabuilder</name>
