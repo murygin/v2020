@@ -36,8 +36,8 @@ public interface INodeService {
     
     <N extends Node> N getNode(Long id);
     
-    List<Organization> getOrganizations();
+    List<Node> getOrganizations();
     
-    List<Asset> getAssets();
+    List<Node> getAssets();
     
 }

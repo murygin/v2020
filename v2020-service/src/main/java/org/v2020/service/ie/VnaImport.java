@@ -50,6 +50,8 @@ public class VnaImport implements IVnaImport {
     private static final int DEFAULT_NUMBER_OF_THREADS = 8;
     private static final int SHUTDOWN_TIMEOUT_IN_SECONDS = 60;
 
+    private int numberOfThreads = DEFAULT_NUMBER_OF_THREADS;
+    
     private ExecutorService taskExecutor;
     private CompletionService<ObjectImportContext> objectImportCompletionService;
     private CompletionService<LinkImportContext> linkImportCompletionService;
@@ -168,9 +170,9 @@ public class VnaImport implements IVnaImport {
 
     private ExecutorService createExecutor() {
         if (LOG.isInfoEnabled()) {
-            LOG.info("Number of threads: " + getMaxNumberOfThreads());
+            LOG.info("Number of threads: " + getNumberOfThreads());
         }
-        return Executors.newFixedThreadPool(getMaxNumberOfThreads());
+        return Executors.newFixedThreadPool(getNumberOfThreads());
     }
 
     private void shutdownAndAwaitTermination(ExecutorService pool) {
@@ -190,13 +192,17 @@ public class VnaImport implements IVnaImport {
             Thread.currentThread().interrupt();
         }
     }
-
-    private int getMaxNumberOfThreads() {
-        return DEFAULT_NUMBER_OF_THREADS;
-    }
     
     private int getShutdownTimeoutInSeconds() {
         return SHUTDOWN_TIMEOUT_IN_SECONDS;
+    }
+
+    public int getNumberOfThreads() {
+        return numberOfThreads;
+    }
+
+    public void setNumberOfThreads(int numberOfThreads) {
+        this.numberOfThreads = numberOfThreads;
     }
 
 }

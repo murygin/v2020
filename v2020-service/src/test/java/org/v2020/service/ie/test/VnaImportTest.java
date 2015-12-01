@@ -33,9 +33,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.IntegrationTest;
-import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.v2020.service.Application;
+import org.v2020.data.DataNeo4jTestConfiguration;
 import org.v2020.service.ie.IVnaImport;
 import org.v2020.service.ie.Vna;
 import org.v2020.util.io.FileSystem;
@@ -49,7 +49,7 @@ import de.sernet.sync.sync.SyncRequest;
  * @author Daniel Murygin <dm[at]sernet[dot]de>
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = Application.class)
+@ContextConfiguration(classes = DataNeo4jTestConfiguration.class)
 @IntegrationTest
 public class VnaImportTest {
 
@@ -85,6 +85,7 @@ public class VnaImportTest {
         long start = System.currentTimeMillis();
         byte[] vnaFileData = FileSystem.readByteArrayFromClasspath(RISK_CATALOG_FILE_NAME);
         assertNotNull("File data is null, file name: " + RISK_CATALOG_FILE_NAME, vnaFileData);
+        vnaImport.setNumberOfThreads(1);
         vnaImport.importVna(vnaFileData);
         if (LOG.isInfoEnabled()) {
             long ms = System.currentTimeMillis() - start;

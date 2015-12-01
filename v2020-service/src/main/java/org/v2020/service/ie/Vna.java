@@ -28,7 +28,6 @@ import java.util.UUID;
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.data.neo4j.support.Neo4jTemplate;
 import org.v2020.util.io.Archive;
 import org.v2020.util.xml.XmlIO;
 
@@ -39,9 +38,9 @@ import de.sernet.sync.sync.SyncRequest;
  */
 public class Vna implements Serializable {
 
-    private static final long serialVersionUID = -1322849916526042517L;
+    private static final long serialVersionUID = 4563763042849838627L;
 
-    private static final Logger LOG = LoggerFactory.getLogger(Neo4jTemplate.class);
+    private static final Logger LOG = LoggerFactory.getLogger(Vna.class);
 
     public static final String EXTENSION_VERINICE_ARCHIVE = ".vna"; //$NON-NLS-1$
     public static final String VERINICE_XML = "verinice.xml"; //$NON-NLS-1$

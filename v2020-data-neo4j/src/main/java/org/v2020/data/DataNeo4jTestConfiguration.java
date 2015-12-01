@@ -17,32 +17,47 @@
  * Contributors:
  *     Daniel Murygin <dm[at]sernet[dot]de> - initial API and implementation
  ******************************************************************************/
-package org.v2020.service;
+package org.v2020.data;
 
+import org.neo4j.ogm.session.Session;
+import org.neo4j.ogm.session.SessionFactory;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
+import org.springframework.data.neo4j.config.Neo4jConfiguration;
+import org.springframework.data.neo4j.repository.config.EnableNeo4jRepositories;
+import org.springframework.data.neo4j.server.InProcessServer;
+import org.springframework.data.neo4j.server.Neo4jServer;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-import org.v2020.service.ie.LinkImportThread;
-import org.v2020.service.ie.ObjectImportThread;
 
 /**
  * @author Daniel Murygin <dm[at]sernet[dot]de>
  */
+
 @Configuration
+@ComponentScan("org.v2020")
+@EnableAutoConfiguration
+@EnableNeo4jRepositories("org.v2020.data.dao")
 @EnableTransactionManagement
-public class ServiceConfig {
-
-    @Bean
-    @Scope(value = "prototype")
-    public ObjectImportThread createObjectImportThread() {
-       return new ObjectImportThread();
-    }
-
+public class DataNeo4jTestConfiguration extends Neo4jConfiguration {
     
     @Bean
-    @Scope(value = "prototype")
-    public LinkImportThread createLinkImportThread() {
-       return new LinkImportThread();
+    public Neo4jServer neo4jServer() {
+        return new InProcessServer();
+    }
+
+    @Bean
+    public SessionFactory getSessionFactory() {
+        // with domain entity base package(s)
+        return new SessionFactory("org.v2020.data.entity");
+    }
+
+    // needed for session in view in web-applications
+    @Bean
+    public Session getSession() throws Exception {
+        return super.getSession();
     }
 }

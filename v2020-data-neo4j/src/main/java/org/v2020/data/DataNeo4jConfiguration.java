@@ -19,30 +19,35 @@
  ******************************************************************************/
 package org.v2020.data;
 
-import org.neo4j.graphdb.GraphDatabaseService;
-import org.neo4j.graphdb.factory.GraphDatabaseFactory;
+import org.neo4j.ogm.session.Session;
+import org.neo4j.ogm.session.SessionFactory;
 import org.springframework.context.annotation.Bean;
-import org.springframework.data.neo4j.config.EnableNeo4jRepositories;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.data.neo4j.config.Neo4jConfiguration;
-import org.springframework.data.neo4j.rest.SpringRestGraphDatabase;
+import org.springframework.data.neo4j.repository.config.EnableNeo4jRepositories;
+import org.springframework.data.neo4j.server.Neo4jServer;
+import org.springframework.data.neo4j.server.RemoteServer;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
  * @author Daniel Murygin <dm[at]sernet[dot]de>
  */
-@org.springframework.context.annotation.Configuration
+@Configuration
 @EnableNeo4jRepositories(basePackages = "org.v2020.data")
-public class Configuration extends Neo4jConfiguration {
+@EnableTransactionManagement
+public class DataNeo4jConfiguration extends Neo4jConfiguration {
+    
+    @Bean
+    public Neo4jServer neo4jServer() {
+        return new RemoteServer("http://localhost:7474","neo4j","geheim");
+    }
 
     @Bean
-    GraphDatabaseService graphDatabaseService() {
-        setBasePackage("org.v2020.data");
-        // Connect to embedded neo4j server
-        return new GraphDatabaseFactory()
-        .newEmbeddedDatabaseBuilder( "v2020-neo4j.db" )
-        .loadPropertiesFromFile( "target/classes/neo4j.properties" )
-        .newGraphDatabase();
-        //return new GraphDatabaseFactory().newEmbeddedDatabase("v2020-neo4j.db");
-        // Connect to a external neo4j server via REST api
-        //return new SpringRestGraphDatabase("http://localhost:7474/db/data/");
+    public SessionFactory getSessionFactory() {
+        // with domain entity base package(s)
+        return new SessionFactory("org.v2020.data.entity");
     }
+
 }

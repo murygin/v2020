@@ -13,12 +13,15 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.v2020.cli.ie.CommandLineOptions;
+import org.v2020.data.DataNeo4jConfiguration;
 import org.v2020.service.ie.IVnaImport;
 import org.v2020.util.time.TimeFormatter;
 
 @Configuration
 @ComponentScan(basePackages = {"org.v2020"})
+@Import(DataNeo4jConfiguration.class)
 public class Application implements CommandLineRunner {
 
     private static final String JAR_NAME = "v2020-vna-import-<VERSION>.jar";
@@ -39,6 +42,7 @@ public class Application implements CommandLineRunner {
             long start = System.currentTimeMillis();
             System.out.println("Importing " + filePath + "...");
             byte[] vnaFileData = Files.readAllBytes(Paths.get(filePath));
+            vnaImport.setNumberOfThreads(1);
             vnaImport.importVna(vnaFileData);
             long ms = System.currentTimeMillis() - start;
             System.out.println("Import finished, runtime: " + TimeFormatter.getHumanRedableTime(ms));

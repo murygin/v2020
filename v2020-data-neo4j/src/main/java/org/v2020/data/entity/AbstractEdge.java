@@ -19,7 +19,8 @@
  ******************************************************************************/
 package org.v2020.data.entity;
 
-import org.springframework.data.neo4j.annotation.GraphId;
+import org.neo4j.ogm.annotation.GraphId;
+
 
 /**
  * @author Daniel Murygin <dm[at]sernet[dot]de>

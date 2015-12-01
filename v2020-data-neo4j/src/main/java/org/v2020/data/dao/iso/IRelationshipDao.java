@@ -19,12 +19,10 @@
  ******************************************************************************/
 package org.v2020.data.dao.iso;
 
-import org.neo4j.graphdb.Relationship;
-
 /**
  * @author Daniel Murygin <dm[at]sernet[dot]de>
  */
 public interface IRelationshipDao {
 
-    Relationship createRelationship(Long startNodeId, Long endNodeId, String type);
+    void createRelationship(Long startNodeId, Long endNodeId, String type);
 }

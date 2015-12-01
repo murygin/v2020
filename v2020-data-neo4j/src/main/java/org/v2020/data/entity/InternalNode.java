@@ -22,8 +22,7 @@ package org.v2020.data.entity;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.neo4j.graphdb.Direction;
-import org.springframework.data.neo4j.annotation.RelatedTo;
+import org.neo4j.ogm.annotation.Relationship;
 /**
  * An internal node (also known as an inner node, inode for short, or branch node) 
  * is any node of a tree that has child nodes.
@@ -32,7 +31,7 @@ import org.springframework.data.neo4j.annotation.RelatedTo;
  */
 public class InternalNode extends Node {
 
-    @RelatedTo(type = "CHILD", direction = Direction.OUTGOING)
+    @Relationship(type = "CHILD", direction = Relationship.OUTGOING)
     private Set<Node> childNotes;
     
     public InternalNode() {

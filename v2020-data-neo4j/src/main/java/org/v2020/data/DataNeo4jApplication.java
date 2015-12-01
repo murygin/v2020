@@ -7,16 +7,16 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @ComponentScan(basePackages = {"org.v2020"})
-public class Application implements CommandLineRunner {
+public class DataNeo4jApplication implements CommandLineRunner {
 
-    public Application() {
+    public DataNeo4jApplication() {
     }
 
     public void run(String... args) throws Exception {        
     }
 
     public static void main(String[] args) throws Exception {
-        SpringApplication.run(Application.class, args);
+        SpringApplication.run(DataNeo4jApplication.class, args);
     }
 
 }

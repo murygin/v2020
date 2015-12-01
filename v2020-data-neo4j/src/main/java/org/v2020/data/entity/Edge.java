@@ -19,10 +19,11 @@
  ******************************************************************************/
 package org.v2020.data.entity;
 
-import org.springframework.data.neo4j.annotation.EndNode;
-import org.springframework.data.neo4j.annotation.RelationshipEntity;
-import org.springframework.data.neo4j.annotation.RelationshipType;
-import org.springframework.data.neo4j.annotation.StartNode;
+import org.neo4j.ogm.annotation.EndNode;
+import org.neo4j.ogm.annotation.RelationshipEntity;
+import org.neo4j.ogm.annotation.StartNode;
+
+
 
 /**
  * @author Daniel Murygin <dm[at]sernet[dot]de>

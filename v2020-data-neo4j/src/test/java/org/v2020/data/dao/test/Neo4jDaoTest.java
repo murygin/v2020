@@ -1,10 +1,10 @@
 package org.v2020.data.dao.test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.assertFalse;
 
 import java.io.IOException;
 import java.util.Calendar;
@@ -19,14 +19,12 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.neo4j.graphdb.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.IntegrationTest;
-import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.data.neo4j.core.GraphDatabase;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.v2020.data.Application;
-import org.v2020.data.dao.iso.NodeDao;
+import org.springframework.transaction.annotation.Transactional;
+import org.v2020.data.DataNeo4jTestConfiguration;
 import org.v2020.data.dao.iso.NodeRepository;
 import org.v2020.data.entity.Edge;
 import org.v2020.data.entity.Node;
@@ -39,8 +37,9 @@ import org.v2020.data.entity.iso.ScenarioAsset;
 import org.v2020.data.entity.iso.ScenarioGroup;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = Application.class)
+@ContextConfiguration(classes = DataNeo4jTestConfiguration.class)
 @IntegrationTest
+@Transactional
 public class Neo4jDaoTest {
     
     private static final String RISK_CATALOGUE_TITLE_EN = "verinice Risk Catalogue EN";   
@@ -51,12 +50,7 @@ public class Neo4jDaoTest {
     
     @Autowired
     NodeRepository nodeRepository;
-    
-    @Autowired
-    NodeDao nodeDao;
    
-    @Autowired
-    GraphDatabase graphDatabase;
     
     @Before
     public void setUp() throws IOException {
@@ -156,7 +150,7 @@ public class Neo4jDaoTest {
     }
 
     @Test
-    public void testSaveNode() {
+    public void testFindByTitle() {
         String title = UUID.randomUUID().toString();
         Organization organization = new Organization(title);
         organization = saveOrganisation(organization);
@@ -231,21 +225,14 @@ public class Neo4jDaoTest {
         
         Scenario theftOfInformation = new Scenario("Theft of information or documents");     
         theftOfMedia.addChildNote(theftOfInformation);
+                          
+        nodeRepository.save(riskCatalogue); 
         
-        Transaction tx = graphDatabase.beginTx();
-        try {           
-            nodeRepository.save(riskCatalogue); 
-            
-            theftOfInformation.addScenarioAssets(new ScenarioAsset(theftOfInformation, cdRom));
-            theftOfInformation.addScenarioAssets(new ScenarioAsset(theftOfInformation, floppyDisk));
-            
-            nodeRepository.save(theftOfInformation);
-            
-            tx.success();
-        } finally {
-            tx.close();
-        }
+        theftOfInformation.addScenarioAssets(new ScenarioAsset(theftOfInformation, cdRom));
+        theftOfInformation.addScenarioAssets(new ScenarioAsset(theftOfInformation, floppyDisk));
         
+        nodeRepository.save(theftOfInformation);
+                
         deleteNodeIfConfigured(riskCatalogue);
     }
     
@@ -257,7 +244,7 @@ public class Neo4jDaoTest {
             orgCreateList.add(createOrganization());
             
         }             
-        List<Node> orgList = nodeDao.findByClass(Organization.class.getName());
+        List<Node> orgList = nodeRepository.findByClass(Organization.class.getName());
         assertNotNull("Organization list is null", orgList);
         assertTrue("Organization list size is not: " + n, orgList.size()>=n);
         for (Node org : orgCreateList) {
@@ -265,6 +252,32 @@ public class Neo4jDaoTest {
             deleteNodeIfConfigured(org);
         }
              
+    }
+    
+    @Test
+    public void testSave() {
+        int n = 10;
+        List<Asset> nodeCreateList = new LinkedList<Asset>();
+        for (int i = 0; i < n; i++) {
+            nodeCreateList.add(createAsset());         
+        } 
+        
+        for (Asset asset : nodeCreateList) {
+            Node assetDb = nodeRepository.findOne(asset.getId());
+            assertNotNull("Node with id " + asset.getId() + " not found in DB.", assetDb);
+            assertNotNull("Node in DB is not equal to created node with id: " + asset.getId(), assetDb.equals(asset));
+        }     
+        
+        for (Node node : nodeCreateList) {
+            deleteNodeIfConfigured(node);
+        }
+             
+    }
+    
+    private Asset createAsset() {
+        String title = UUID.randomUUID().toString();
+        Asset node = new Asset(title);
+        return saveAsset(node);
     }
 
     private Organization createOrganization() {
@@ -275,11 +288,15 @@ public class Neo4jDaoTest {
     
     //@Transactional
     private void saveNode(Node control) {
-        nodeDao.save(control);
+        nodeRepository.save(control);
     }
     
     //@Transactional
     private Organization saveOrganisation(Organization node) {
+        return nodeRepository.save(node);
+    }
+    
+    private Asset saveAsset(Asset node) {
         return nodeRepository.save(node);
     }
     
