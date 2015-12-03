@@ -33,22 +33,23 @@ import org.slf4j.LoggerFactory;
  * @author Daniel Murygin <dm[at]sernet[dot]de>
  */
 public final class Archive {
- 
+
     private static final Logger LOG = LoggerFactory.getLogger(Archive.class);
-    
+
     static final int BUFFER_SIZE = 1024;
-    
+
     private Archive() {
         // don not instantiate this class
     }
-    
+
     /**
      * Extracts all entries of a Zip-Archive
      * 
-     * @param zipFileData Data of a zip archive
+     * @param zipFileData
+     *            Data of a zip archive
      * @throws IOException
      */
-    public static void extractZipArchive(byte[] zipFileData, String directory) throws IOException {             
+    public static void extractZipArchive(byte[] zipFileData, String directory) throws IOException {
         new File(directory).mkdirs();
         // get the zip file content
         ZipInputStream inputStream = new ZipInputStream(new ByteArrayInputStream(zipFileData));
@@ -56,7 +57,7 @@ public final class Archive {
         ZipEntry zipEntry = inputStream.getNextEntry();
         byte[] buffer = new byte[BUFFER_SIZE];
         while (zipEntry != null) {
-            if(!zipEntry.isDirectory()) {              
+            if (!zipEntry.isDirectory()) {
                 String fileName = zipEntry.getName();
                 File newFile = new File(directory + File.separator + fileName);
                 new File(newFile.getParent()).mkdirs();

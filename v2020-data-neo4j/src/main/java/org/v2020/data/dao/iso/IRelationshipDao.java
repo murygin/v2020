@@ -19,10 +19,14 @@
  ******************************************************************************/
 package org.v2020.data.dao.iso;
 
+import java.util.List;
+
 /**
  * @author Daniel Murygin <dm[at]sernet[dot]de>
  */
 public interface IRelationshipDao {
 
     void createRelationship(Long startNodeId, Long endNodeId, String type);
+
+    void createRelationships(Long startNodeId, List<Long> endNodeIdList, String type);
 }

@@ -6,13 +6,14 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@ComponentScan(basePackages = {"org.v2020.service"})
+@ComponentScan(basePackages = { "org.v2020.service" })
 public class ServiceApplication implements CommandLineRunner {
 
     public ServiceApplication() {
     }
-    
-    public void run(String... args) throws Exception {        
+
+    @Override
+    public void run(String... args) throws Exception {
     }
 
     public static void main(String[] args) throws Exception {

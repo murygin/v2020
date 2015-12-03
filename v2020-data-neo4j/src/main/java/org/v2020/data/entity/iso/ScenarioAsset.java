@@ -19,7 +19,6 @@
  ******************************************************************************/
 package org.v2020.data.entity.iso;
 
-
 import org.neo4j.ogm.annotation.EndNode;
 import org.neo4j.ogm.annotation.RelationshipEntity;
 import org.neo4j.ogm.annotation.StartNode;
@@ -30,24 +29,26 @@ import org.v2020.data.entity.AbstractEdge;
  */
 @RelationshipEntity(type = "AFFECTS")
 public class ScenarioAsset extends AbstractEdge<Scenario, Asset> {
-    
-    @StartNode 
+
+    @StartNode
     private Scenario scenario;
-    
-    @EndNode 
-    private Asset asset;  
-    
+
+    @EndNode
+    private Asset asset;
+
     public ScenarioAsset() {
         super();
     }
-    
+
     public ScenarioAsset(Scenario scenario, Asset asset) {
         super();
         this.scenario = scenario;
         this.asset = asset;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see org.v2020.data.entity.Edge#getStartNode()
      */
     @Override
@@ -55,7 +56,9 @@ public class ScenarioAsset extends AbstractEdge<Scenario, Asset> {
         return scenario;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see org.v2020.data.entity.Edge#getEndNode()
      */
     @Override

@@ -23,26 +23,20 @@ import org.neo4j.ogm.annotation.EndNode;
 import org.neo4j.ogm.annotation.RelationshipEntity;
 import org.neo4j.ogm.annotation.StartNode;
 
-
-
 /**
  * @author Daniel Murygin <dm[at]sernet[dot]de>
  */
 @RelationshipEntity(type = "link")
-public class Edge extends AbstractEdge<Node,Node> {
+public class Edge extends AbstractEdge<Node, Node> {
 
-    @StartNode 
+    @StartNode
     private Node startNode;
-    
-    @EndNode 
+
+    @EndNode
     private Node endNode;
-    
+
     private String type;
 
-    private Edge() {
-        super();
-    }
-    
     public Edge(Node startNode, Node endNode, String type) {
         super();
         this.startNode = startNode;
@@ -50,7 +44,9 @@ public class Edge extends AbstractEdge<Node,Node> {
         this.type = type;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see org.v2020.data.entity.AbstractEdge#getStartNode()
      */
     @Override
@@ -58,7 +54,9 @@ public class Edge extends AbstractEdge<Node,Node> {
         return startNode;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see org.v2020.data.entity.AbstractEdge#getEndNode()
      */
     @Override

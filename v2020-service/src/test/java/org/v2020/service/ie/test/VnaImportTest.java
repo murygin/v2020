@@ -54,24 +54,24 @@ import de.sernet.sync.sync.SyncRequest;
 public class VnaImportTest {
 
     private static final Logger LOG = LoggerFactory.getLogger(VnaImportTest.class);
-    
+
     public static final String RISK_CATALOG_FILE_NAME = "BusinessImpactInheritenceTest.vna";
-    
+
     @Autowired
     IVnaImport vnaImport;
-    
+
     @Test
-    public void testVna() throws Exception {            
+    public void testVna() throws Exception {
         byte[] vnaFileData = FileSystem.readByteArrayFromClasspath(RISK_CATALOG_FILE_NAME);
         assertNotNull("File data is null, file name: " + RISK_CATALOG_FILE_NAME, vnaFileData);
         Vna vna = new Vna(vnaFileData);
-        byte[] xmlFiledata = vna.getXmlFileData();      
+        byte[] xmlFiledata = vna.getXmlFileData();
         assertNotNull("Xml file data is null.", xmlFiledata);
         SyncRequest syncRequest = vna.getXml();
         assertNotNull("SyncRequest is null.", syncRequest);
         SyncData syncData = syncRequest.getSyncData();
-        assertNotNull("SyncData is null.", syncData);    
-        List<SyncObject>  syncObjects = syncData.getSyncObject();
+        assertNotNull("SyncData is null.", syncData);
+        List<SyncObject> syncObjects = syncData.getSyncObject();
         assertNotNull("SyncObject list is null.", syncObjects);
         assertFalse("SyncObject list is empty.", syncObjects.isEmpty());
         SyncObject syncObject = syncObjects.get(0);
@@ -79,7 +79,7 @@ public class VnaImportTest {
         vna.clear();
         assertFalse("Temp folder still exists: " + vna.getTempFileName(), Files.exists(Paths.get(vna.getTempFileName()), LinkOption.NOFOLLOW_LINKS));
     }
-    
+
     @Test
     public void testVnaImport() throws Exception {
         long start = System.currentTimeMillis();

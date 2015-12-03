@@ -25,8 +25,6 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Scope;
-import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.data.neo4j.config.Neo4jConfiguration;
 import org.springframework.data.neo4j.repository.config.EnableNeo4jRepositories;
 import org.springframework.data.neo4j.server.InProcessServer;
@@ -43,13 +41,15 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableNeo4jRepositories("org.v2020.data.dao")
 @EnableTransactionManagement
 public class DataNeo4jTestConfiguration extends Neo4jConfiguration {
-    
+
     @Bean
+    @Override
     public Neo4jServer neo4jServer() {
         return new InProcessServer();
     }
 
     @Bean
+    @Override
     public SessionFactory getSessionFactory() {
         // with domain entity base package(s)
         return new SessionFactory("org.v2020.data.entity");
@@ -57,6 +57,7 @@ public class DataNeo4jTestConfiguration extends Neo4jConfiguration {
 
     // needed for session in view in web-applications
     @Bean
+    @Override
     public Session getSession() throws Exception {
         return super.getSession();
     }

@@ -25,13 +25,13 @@ import org.v2020.data.entity.ExternalNode;
  * @author Daniel Murygin <dm[at]sernet[dot]de>
  */
 public class Record extends ExternalNode {
-    
+
     public Record() {
         super();
     }
 
     public Record(String title) {
         super(title);
-    }   
+    }
 
 }

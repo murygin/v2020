@@ -30,7 +30,6 @@ import org.v2020.service.crud.INodeService;
 
 import de.sernet.sync.data.SyncAttribute;
 import de.sernet.sync.data.SyncObject;
-import de.sernet.sync.mapping.SyncMapping;
 import de.sernet.sync.mapping.SyncMapping.MapObjectType;
 import de.sernet.sync.mapping.SyncMapping.MapObjectType.MapAttributeType;
 
@@ -38,56 +37,61 @@ import de.sernet.sync.mapping.SyncMapping.MapObjectType.MapAttributeType;
  * @author Daniel Murygin <dm[at]sernet[dot]de>
  */
 public class ObjectImportThread implements Callable<ObjectImportContext> {
-    
+
     private static final Logger LOG = LoggerFactory.getLogger(ObjectImportThread.class);
-    
+
     private ObjectImportContext context;
-    
+
     @Autowired
     private INodeService nodeService;
-    
+
     public ObjectImportThread() {
         super();
     }
-    
+
     public ObjectImportThread(ObjectImportContext syncObject) {
         super();
         this.context = syncObject;
     }
-    
-    /* (non-Javadoc)
+
+    /*
+     * (non-Javadoc)
+     * 
      * @see java.util.concurrent.Callable#call()
      */
     @Override
     public ObjectImportContext call() throws Exception {
         try {
             importObject();
-        } catch(Exception e) {
+            if (LOG.isDebugEnabled()) {
+                LOG.debug("Import finished " + logObject(context.getSyncObject()));
+            }
+        } catch (Exception e) {
             LOG.error("Error while importing type: " + context.getSyncObject().getExtObjectType(), e);
         }
         return context;
     }
-    
+
     private void importObject() {
         if (LOG.isDebugEnabled()) {
-            LOG.debug("Importing " +  logObject(context.getSyncObject()) + "...");
+            LOG.debug("Importing " + logObject(context.getSyncObject()) + "...");
         }
         SyncObject syncObject = context.getSyncObject();
-        MapObjectType mapObject = getMapObject(context.getMapObjectTypeList(), syncObject.getExtObjectType());    
+        MapObjectType mapObject = getMapObject(context.getMapObjectTypeList(), syncObject.getExtObjectType());
         Node node = NodeFactory.createNode(mapObject.getIntId());
         node.setTitle(TitleAdapter.getTitle(syncObject, mapObject));
-        node.setParent(context.getParent()); 
-        importProperties(syncObject.getSyncAttribute(), mapObject, node);   
+        node.setParent(context.getParent());
+        importProperties(syncObject.getSyncAttribute(), mapObject, node);
         nodeService.create(node);
         context.setNode(node);
     }
-    
+
     private void importProperties(List<SyncAttribute> syncObjectList, MapObjectType mapObject, Node node) {
         for (SyncAttribute syncAttribute : syncObjectList) {
-            if(isProperty(syncAttribute)) {
+            if (isProperty(syncAttribute)) {
                 String name = syncAttribute.getName();
                 MapAttributeType mapAttribute = getMapAttribute(mapObject, name);
-                if(mapAttribute!=null) {
+                if (mapAttribute != null) {
                     List<String> valueList = syncAttribute.getValue();
                     node.addProperty(mapAttribute.getIntId(), convertValue(valueList));
                 } else {
@@ -96,16 +100,16 @@ public class ObjectImportThread implements Callable<ObjectImportContext> {
             }
         }
     }
-    
+
     private MapObjectType getMapObject(List<MapObjectType> mapObjects, String extId) {
         for (MapObjectType mapObject : mapObjects) {
-            if(extId.equals(mapObject.getExtId())) {
+            if (extId.equals(mapObject.getExtId())) {
                 return mapObject;
             }
         }
         return null;
     }
-    
+
     private MapAttributeType getMapAttribute(MapObjectType mapObject, String extId) {
         for (MapAttributeType mapAttribute : mapObject.getMapAttributeType()) {
             if (extId.equals(mapAttribute.getExtId())) {
@@ -116,11 +120,11 @@ public class ObjectImportThread implements Callable<ObjectImportContext> {
     }
 
     private boolean isProperty(SyncAttribute syncAttribute) {
-        return syncAttribute!=null && syncAttribute.getName()!=null && syncAttribute.getValue()!=null;
+        return syncAttribute != null && syncAttribute.getName() != null && syncAttribute.getValue() != null;
     }
-    
+
     private Object convertValue(List<String> valueList) {
-        return (valueList.size()>1) ? valueList : valueList.get(0);
+        return (valueList.size() > 1) ? valueList : valueList.get(0);
     }
 
     public ObjectImportContext getContext() {
@@ -134,7 +138,5 @@ public class ObjectImportThread implements Callable<ObjectImportContext> {
     private String logObject(SyncObject syncObject) {
         return "object: " + syncObject.getExtObjectType() + " - " + syncObject.getExtId();
     }
-
-
 
 }

@@ -25,13 +25,13 @@ import org.v2020.data.entity.ExternalNode;
  * @author Daniel Murygin <dm[at]sernet[dot]de>
  */
 public class Audit extends ExternalNode {
-    
+
     public Audit() {
         super();
     }
 
     public Audit(String title) {
         super(title);
-    }   
-    
+    }
+
 }

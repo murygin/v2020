@@ -35,9 +35,9 @@ import de.sernet.sync.mapping.SyncMapping.MapObjectType.MapAttributeType;
  * @author Daniel Murygin <dm[at]sernet[dot]de>
  */
 public final class TitleAdapter {
-    
+
     private static final Logger LOG = LoggerFactory.getLogger(TitleAdapter.class);
-    
+
     public static final String ASSET_GROUP_TITLE = "assetgroup_name";
     public static final String ASSET_TITLE = "asset_name";
     public static final String AUDIT_GROUP_TITLE = "auditgroup_name";
@@ -74,9 +74,9 @@ public final class TitleAdapter {
     public static final String THREAT_TITLE = "threat_name";
     public static final String VULNERABILITY_GROUP_TITLE = "vulnerability_group_name";
     public static final String VULNERABILITY_TITLE = "vulnerability_name";
-    
-    
-    public static final Map<String, String> TITLE_KEY_MAP;
+
+    protected static final Map<String, String> TITLE_KEY_MAP;
+
     static {
         TITLE_KEY_MAP = new HashMap<String, String>();
         TITLE_KEY_MAP.put(NodeFactory.ASSET_GROUP_TYPE, ASSET_GROUP_TITLE);
@@ -116,17 +116,17 @@ public final class TitleAdapter {
         TITLE_KEY_MAP.put(NodeFactory.VULNERABILITY_GROUP_TYPE, VULNERABILITY_GROUP_TITLE);
         TITLE_KEY_MAP.put(NodeFactory.VULNERABILITY_TYPE, VULNERABILITY_TITLE);
     }
-    
+
     public static String getTitle(SyncObject syncObject, MapObjectType mapObject) {
         String intKey = getTitleKey(mapObject.getIntId());
         MapAttributeType mapAttribute = getMapAttribute(mapObject, intKey);
-        return (mapAttribute==null) ? null : getAttribute(syncObject.getSyncAttribute(), mapAttribute.getExtId());
+        return (mapAttribute == null) ? null : getAttribute(syncObject.getSyncAttribute(), mapAttribute.getExtId());
 
     }
 
     public static String getTitleKey(String extObjectType) {
         String key = TITLE_KEY_MAP.get(extObjectType);
-        if(key==null) {
+        if (key == null) {
             LOG.warn("No title key found for type: " + extObjectType);
         }
         return key;
@@ -134,14 +134,14 @@ public final class TitleAdapter {
 
     public static String getAttribute(List<SyncAttribute> syncAttributeList, String key) {
         for (SyncAttribute attribute : syncAttributeList) {
-            if(key.equals(attribute.getName())) {
+            if (key.equals(attribute.getName())) {
                 return attribute.getValue().get(0);
             }
         }
         LOG.warn("No title found for key: " + key);
         return null;
     }
-    
+
     private static MapAttributeType getMapAttribute(MapObjectType mapObject, String intId) {
         for (MapAttributeType mapAttribute : mapObject.getMapAttributeType()) {
             if (intId.equals(mapAttribute.getIntId())) {

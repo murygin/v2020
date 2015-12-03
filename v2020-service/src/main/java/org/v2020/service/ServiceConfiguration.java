@@ -40,12 +40,14 @@ import org.v2020.service.ie.ObjectImportThread;
 @EnableNeo4jRepositories(basePackages = "org.v2020.data")
 @EnableTransactionManagement
 public class ServiceConfiguration extends Neo4jConfiguration {
-    
+
+    @Override
     @Bean
     public Neo4jServer neo4jServer() {
         return new RemoteServer("http://localhost:7474");
     }
 
+    @Override
     @Bean
     public SessionFactory getSessionFactory() {
         // with domain entity base package(s)
@@ -53,22 +55,22 @@ public class ServiceConfiguration extends Neo4jConfiguration {
     }
 
     // needed for session in view in web-applications
+    @Override
     @Bean
     @Scope(value = "session", proxyMode = ScopedProxyMode.TARGET_CLASS)
     public Session getSession() throws Exception {
         return super.getSession();
     }
-    
+
     @Bean
     @Scope(value = "prototype")
     public ObjectImportThread createObjectImportThread() {
-       return new ObjectImportThread();
+        return new ObjectImportThread();
     }
 
-    
     @Bean
     @Scope(value = "prototype")
     public LinkImportThread createLinkImportThread() {
-       return new LinkImportThread();
+        return new LinkImportThread();
     }
 }

@@ -22,8 +22,6 @@ package org.v2020.service.crud;
 import java.util.List;
 
 import org.v2020.data.entity.Node;
-import org.v2020.data.entity.iso.Asset;
-import org.v2020.data.entity.iso.Organization;
 
 /**
  * @author Daniel Murygin <dm[at]sernet[dot]de>
@@ -31,13 +29,15 @@ import org.v2020.data.entity.iso.Organization;
 public interface INodeService {
 
     <N extends Node> N create(N node);
-    
+
     void createRelationship(Long startNodeId, Long endNodeId, String type);
-    
+
+    void createRelationships(Long startNodeId, List<Long> endNodeIdList, String type);
+
     <N extends Node> N getNode(Long id);
-    
+
     List<Node> getOrganizations();
-    
+
     List<Node> getAssets();
-    
+
 }

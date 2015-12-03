@@ -35,7 +35,7 @@ public class ObjectImportContext {
     private List<MapObjectType> mapObjectTypeList;
     private Node parent;
     private Node node;
-    
+
     public ObjectImportContext(Node parent, SyncObject syncObject, List<MapObjectType> mapObjectTypeList) {
         super();
         this.parent = parent;
@@ -46,9 +46,11 @@ public class ObjectImportContext {
     public SyncObject getSyncObject() {
         return syncObject;
     }
+
     public void setSyncObject(SyncObject syncObject) {
         this.syncObject = syncObject;
     }
+
     public List<MapObjectType> getMapObjectTypeList() {
         return mapObjectTypeList;
     }
@@ -60,15 +62,17 @@ public class ObjectImportContext {
     public Node getParent() {
         return parent;
     }
+
     public void setParent(Node parent) {
         this.parent = parent;
     }
+
     public Node getNode() {
         return node;
     }
+
     public void setNode(Node node) {
         this.node = node;
     }
-    
-    
+
 }

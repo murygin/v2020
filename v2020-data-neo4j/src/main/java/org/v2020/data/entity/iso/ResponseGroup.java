@@ -21,18 +21,17 @@ package org.v2020.data.entity.iso;
 
 import org.v2020.data.entity.InternalNode;
 
-
 /**
  * @author Daniel Murygin <dm[at]sernet[dot]de>
  */
 public class ResponseGroup extends InternalNode {
-    
+
     public ResponseGroup() {
         super();
     }
 
     public ResponseGroup(String title) {
         super(title);
-    } 
-    
+    }
+
 }

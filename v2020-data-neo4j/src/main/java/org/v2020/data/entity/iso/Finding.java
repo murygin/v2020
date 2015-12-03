@@ -25,13 +25,13 @@ import org.v2020.data.entity.ExternalNode;
  * @author Daniel Murygin <dm[at]sernet[dot]de>
  */
 public class Finding extends ExternalNode {
-    
+
     public Finding() {
         super();
     }
 
     public Finding(String title) {
         super(title);
-    }   
-    
+    }
+
 }

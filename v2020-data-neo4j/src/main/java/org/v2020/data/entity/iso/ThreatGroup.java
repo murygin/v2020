@@ -21,18 +21,17 @@ package org.v2020.data.entity.iso;
 
 import org.v2020.data.entity.InternalNode;
 
-
 /**
  * @author Daniel Murygin <dm[at]sernet[dot]de>
  */
 public class ThreatGroup extends InternalNode {
-    
+
     public ThreatGroup() {
         super();
     }
 
     public ThreatGroup(String title) {
         super(title);
-    } 
-    
+    }
+
 }

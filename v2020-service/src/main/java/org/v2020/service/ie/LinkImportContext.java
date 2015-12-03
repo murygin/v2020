@@ -19,26 +19,35 @@
  ******************************************************************************/
 package org.v2020.service.ie;
 
-import de.sernet.sync.data.SyncLink;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * @author Daniel Murygin <dm[at]sernet[dot]de>
  */
-public class LinkImportContext {
+public class LinkImportContext implements Comparable<LinkImportContext> {
 
-    private Long startId;   
-    private Long endId;
+    private Long startId;
+    private List<Long> endIdList;
     private String type;
     private String comment;
 
     public LinkImportContext() {
         super();
-    } 
+    }
+
+    public LinkImportContext(Long startId, String type) {
+        super();
+        this.startId = startId;
+        this.type = type;
+        endIdList = new LinkedList<Long>();
+    }
 
     public LinkImportContext(Long startId, Long endId, String type) {
         super();
         this.startId = startId;
-        this.endId = endId;
+        endIdList = new LinkedList<Long>();
+        endIdList.add(endId);
         this.type = type;
     }
 
@@ -50,12 +59,12 @@ public class LinkImportContext {
         this.startId = startId;
     }
 
-    public Long getEndId() {
-        return endId;
+    public List<Long> getEndIdList() {
+        return endIdList;
     }
 
-    public void setEndId(Long endId) {
-        this.endId = endId;
+    public void addEndId(Long endId) {
+        endIdList.add(endId);
     }
 
     public String getType() {
@@ -74,7 +83,60 @@ public class LinkImportContext {
         this.comment = comment;
     }
 
-    
-    
-    
+    @Override
+    public int compareTo(LinkImportContext other) {
+        int result = 0;
+        if (this == other) {
+            return 0;
+        }
+        if (other == null) {
+            return -1;
+        }
+        if (startId == null) {
+            if (other.startId != null) {
+                return 1;
+            }
+        }
+        result = startId.compareTo(other.startId);
+        return result;
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((startId == null) ? 0 : startId.hashCode());
+        result = prime * result + ((type == null) ? 0 : type.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        LinkImportContext other = (LinkImportContext) obj;
+        if (startId == null) {
+            if (other.startId != null) {
+                return false;
+            }
+        } else if (!startId.equals(other.startId)) {
+            return false;
+        }
+        if (type == null) {
+            if (other.type != null) {
+                return false;
+            }
+        } else if (!type.equals(other.type)) {
+            return false;
+        }
+        return true;
+    }
+
 }

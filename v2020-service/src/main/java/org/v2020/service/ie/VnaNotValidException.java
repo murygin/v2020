@@ -23,7 +23,7 @@ package org.v2020.service.ie;
  * @author Daniel Murygin <dm[at]sernet[dot]de>
  */
 public class VnaNotValidException extends RuntimeException {
-    
+
     private static final long serialVersionUID = 7303221037111060002L;
 
     public VnaNotValidException(Exception e) {

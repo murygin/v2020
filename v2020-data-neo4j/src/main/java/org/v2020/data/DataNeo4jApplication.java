@@ -6,13 +6,16 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@ComponentScan(basePackages = {"org.v2020"})
+@ComponentScan(basePackages = { "org.v2020" })
 public class DataNeo4jApplication implements CommandLineRunner {
 
     public DataNeo4jApplication() {
+        // empty
     }
 
-    public void run(String... args) throws Exception {        
+    @Override
+    public void run(String... args) throws Exception {
+        // empty
     }
 
     public static void main(String[] args) throws Exception {

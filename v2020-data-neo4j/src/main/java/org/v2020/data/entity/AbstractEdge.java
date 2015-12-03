@@ -21,16 +21,15 @@ package org.v2020.data.entity;
 
 import org.neo4j.ogm.annotation.GraphId;
 
-
 /**
  * @author Daniel Murygin <dm[at]sernet[dot]de>
  */
 public abstract class AbstractEdge<S extends Node, E extends Node> {
 
     @GraphId
-    Long id;
-    
-    public String comment;
+    private Long id;
+
+    private String comment;
 
     public AbstractEdge() {
         super();
@@ -40,9 +39,9 @@ public abstract class AbstractEdge<S extends Node, E extends Node> {
         super();
         this.comment = comment;
     }
-    
+
     public abstract S getStartNode();
-    
+
     public abstract E getEndNode();
 
     public String getComment() {

@@ -25,13 +25,13 @@ import org.v2020.data.entity.ExternalNode;
  * @author Daniel Murygin <dm[at]sernet[dot]de>
  */
 public class Process extends ExternalNode {
-    
+
     public Process() {
         super();
     }
 
     public Process(String title) {
         super(title);
-    }   
-    
+    }
+
 }

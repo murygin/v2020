@@ -25,13 +25,13 @@ import org.v2020.data.entity.InternalNode;
  * @author Daniel Murygin <dm[at]sernet[dot]de>
  */
 public class Organization extends InternalNode {
-    
+
     public Organization() {
         super();
     }
 
     public Organization(String title) {
         super(title);
-    }   
-       
+    }
+
 }

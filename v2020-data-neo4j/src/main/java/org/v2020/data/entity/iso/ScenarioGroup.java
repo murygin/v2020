@@ -21,18 +21,17 @@ package org.v2020.data.entity.iso;
 
 import org.v2020.data.entity.InternalNode;
 
-
 /**
  * @author Daniel Murygin <dm[at]sernet[dot]de>
  */
 public class ScenarioGroup extends InternalNode {
-    
+
     public ScenarioGroup() {
         super();
     }
 
     public ScenarioGroup(String title) {
         super(title);
-    } 
-    
+    }
+
 }

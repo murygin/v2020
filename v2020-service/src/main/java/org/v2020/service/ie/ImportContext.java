@@ -28,19 +28,19 @@ import java.util.Map;
 public class ImportContext {
 
     private Map<String, Long> extIdDbIdMap;
-    
+
     public ImportContext() {
         super();
         extIdDbIdMap = new HashMap<String, Long>();
     }
 
     public void addObject(ObjectImportContext objectContext) {
-        if(objectContext.getNode()!=null) {
+        if (objectContext.getNode() != null) {
             extIdDbIdMap.put(objectContext.getSyncObject().getExtId(), objectContext.getNode().getId());
         }
     }
-    
+
     public Long getDbId(String extId) {
-       return extIdDbIdMap.get(extId);
+        return extIdDbIdMap.get(extId);
     }
 }

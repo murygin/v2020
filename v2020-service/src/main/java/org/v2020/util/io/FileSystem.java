@@ -24,20 +24,15 @@ import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 /**
  * @author Daniel Murygin <dm[at]sernet[dot]de>
  */
 public final class FileSystem {
-    
-    private static final Logger LOG = LoggerFactory.getLogger(Archive.class);
-    
+
     private FileSystem() {
         // don not instantiate this class
     }
-    
+
     public static byte[] readByteArrayFromClasspath(String name) throws IOException, URISyntaxException {
         return Files.readAllBytes(Paths.get(ClassLoader.getSystemResource(name).toURI()));
     }

@@ -26,13 +26,13 @@ import org.v2020.data.entity.InternalNode;
  *
  */
 public class EvidenceGroup extends InternalNode {
-    
+
     public EvidenceGroup() {
         super();
     }
 
     public EvidenceGroup(String title) {
         super(title);
-    }   
- 
+    }
+
 }

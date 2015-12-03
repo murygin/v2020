@@ -5,7 +5,6 @@
 // Generated on: 2015.02.04 at 09:45:25 PM MEZ 
 //
 
-
 package de.sernet.sync.data;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -13,11 +12,13 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
- * <p>Java class for syncLink complex type.
+ * <p>
+ * Java class for syncLink complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * The following schema fragment specifies the expected content contained within
+ * this class.
  * 
  * <pre>
  * &lt;complexType name="syncLink">
@@ -37,12 +38,7 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "syncLink", propOrder = {
-    "dependant",
-    "dependency",
-    "relationId",
-    "comment"
-})
+@XmlType(name = "syncLink", propOrder = { "dependant", "dependency", "relationId", "comment" })
 public class SyncLink {
 
     @XmlElement(required = true)
@@ -56,10 +52,8 @@ public class SyncLink {
     /**
      * Gets the value of the dependant property.
      * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return possible object is {@link String }
+     * 
      */
     public String getDependant() {
         return dependant;
@@ -69,9 +63,8 @@ public class SyncLink {
      * Sets the value of the dependant property.
      * 
      * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *            allowed object is {@link String }
+     * 
      */
     public void setDependant(String value) {
         this.dependant = value;
@@ -80,10 +73,8 @@ public class SyncLink {
     /**
      * Gets the value of the dependency property.
      * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return possible object is {@link String }
+     * 
      */
     public String getDependency() {
         return dependency;
@@ -93,9 +84,8 @@ public class SyncLink {
      * Sets the value of the dependency property.
      * 
      * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *            allowed object is {@link String }
+     * 
      */
     public void setDependency(String value) {
         this.dependency = value;
@@ -104,10 +94,8 @@ public class SyncLink {
     /**
      * Gets the value of the relationId property.
      * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return possible object is {@link String }
+     * 
      */
     public String getRelationId() {
         return relationId;
@@ -117,9 +105,8 @@ public class SyncLink {
      * Sets the value of the relationId property.
      * 
      * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *            allowed object is {@link String }
+     * 
      */
     public void setRelationId(String value) {
         this.relationId = value;
@@ -128,10 +115,8 @@ public class SyncLink {
     /**
      * Gets the value of the comment property.
      * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return possible object is {@link String }
+     * 
      */
     public String getComment() {
         return comment;
@@ -141,9 +126,8 @@ public class SyncLink {
      * Sets the value of the comment property.
      * 
      * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *            allowed object is {@link String }
+     * 
      */
     public void setComment(String value) {
         this.comment = value;

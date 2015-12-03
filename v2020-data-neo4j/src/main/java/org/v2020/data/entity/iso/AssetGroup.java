@@ -26,7 +26,7 @@ import org.v2020.data.entity.InternalNode;
  *
  */
 public class AssetGroup extends InternalNode {
-    
+
     public AssetGroup() {
         super();
     }
@@ -34,5 +34,5 @@ public class AssetGroup extends InternalNode {
     public AssetGroup(String title) {
         super(title);
     }
-    
+
 }

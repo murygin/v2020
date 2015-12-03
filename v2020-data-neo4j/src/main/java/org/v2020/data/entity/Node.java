@@ -21,7 +21,6 @@ package org.v2020.data.entity;
 
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Hashtable;
 import java.util.Map;
 import java.util.Set;
 
@@ -54,28 +53,28 @@ import org.neo4j.ogm.annotation.Transient;
  */
 @NodeEntity
 public class Node {
-    
+
     @GraphId
     private Long id;
 
     private String title;
-    
+
     private String className;
-    
+
     @Transient
-    Map<String, Object> /*DynamicProperties*/ properties = new HashMap<String, Object>();
-    
-    @Relationship(type="CHILD", direction = Relationship.INCOMING)
+    Map<String, Object> /* DynamicProperties */ properties = new HashMap<String, Object>();
+
+    @Relationship(type = "CHILD", direction = Relationship.INCOMING)
     private Node parent;
-    
-    @Relationship(type="link", direction=Relationship.UNDIRECTED)
+
+    @Relationship(type = "link", direction = Relationship.UNDIRECTED)
     Set<Edge> edges = new HashSet<Edge>();
-    
+
     public Node() {
         super();
         this.className = this.getClass().getName();
     }
-    
+
     public Node(String title) {
         super();
         this.title = title;
@@ -98,22 +97,26 @@ public class Node {
         this.title = title;
     }
 
+    public String getClassName() {
+        return className;
+    }
+
     public void addProperty(String key, Object value) {
         properties.put(key, value);
     }
-    
+
     public Object getProperty(String key) {
         return properties.get(key);
     }
-    
+
     public Map<String, Object> getProperties() {
-        Map<String, Object> map = new Hashtable<String, Object>();
+        Map<String, Object> map = new HashMap<String, Object>();
         for (String key : properties.keySet()) {
             map.put(key, getProperty(key));
         }
         return map;
     }
-    
+
     public Node getParent() {
         return parent;
     }
@@ -121,27 +124,26 @@ public class Node {
     public void setParent(Node parent) {
         this.parent = parent;
     }
-    
+
     public void addEdge(Node endNode, String type) {
         edges.add(new Edge(this, endNode, type));
     }
-    
+
     public Set<Edge> getEdges() {
         return edges;
     }
-    
+
     public Set<Edge> getEdges(String type) {
         Set<Edge> allEdges = getEdges();
-        Set<Edge> edges = new HashSet<Edge>();
+        Set<Edge> edgesOfType = new HashSet<Edge>();
         for (Edge edge : allEdges) {
-            if(edge.getType().equals(type)) {
-                edges.add(edge);
+            if (edge.getType().equals(type)) {
+                edgesOfType.add(edge);
             }
         }
-        return edges;
+        return edgesOfType;
     }
-    
-    
+
     @Override
     public boolean equals(Object other) {
         if (this == other) {
@@ -160,10 +162,11 @@ public class Node {
     public int hashCode() {
         return id == null ? System.identityHashCode(this) : id.hashCode();
     }
-    
+
+    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(title).append("(").append(id).append(")");    
+        sb.append(title).append("(").append(id).append(")");
         return sb.toString();
     }
 }

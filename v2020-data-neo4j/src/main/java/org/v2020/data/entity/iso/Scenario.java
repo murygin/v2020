@@ -29,7 +29,7 @@ import org.v2020.data.entity.ExternalNode;
  * @author Daniel Murygin <dm[at]sernet[dot]de>
  */
 public class Scenario extends ExternalNode {
-    
+
     public Scenario() {
         super();
     }
@@ -37,21 +37,21 @@ public class Scenario extends ExternalNode {
     public Scenario(String title) {
         super(title);
     }
-    
+
     @Relationship
     Set<ScenarioAsset> scenarioAsset;
-    
+
     public Set<ScenarioAsset> getScenarioAssets() {
         if (scenarioAsset == null) {
             scenarioAsset = new HashSet<ScenarioAsset>();
         }
         return scenarioAsset;
     }
-    
-    public void addScenarioAssets(ScenarioAsset edge) {     
+
+    public void addScenarioAssets(ScenarioAsset edge) {
         getScenarioAssets().add(edge);
     }
-     
+
     public boolean hasAScenarioAssets() {
         return !(getScenarioAssets().isEmpty());
     }

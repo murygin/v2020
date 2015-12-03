@@ -21,18 +21,17 @@ package org.v2020.data.entity.iso;
 
 import org.v2020.data.entity.InternalNode;
 
-
 /**
  * @author Daniel Murygin <dm[at]sernet[dot]de>
  */
 public class AuditGroup extends InternalNode {
-    
+
     public AuditGroup() {
         super();
     }
 
     public AuditGroup(String title) {
         super(title);
-    }   
-    
+    }
+
 }

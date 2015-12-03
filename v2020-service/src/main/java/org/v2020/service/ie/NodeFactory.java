@@ -83,7 +83,7 @@ public final class NodeFactory {
     public static final String INTERVIEW_GROUP_TYPE = "interview_group";
     public static final String INTERVIEW_TYPE = "interview";
     public static final String ORGANIZATION_TYPE = "org";
-    public static final String PERSON_GROUP_TYPE = "persongroup";   
+    public static final String PERSON_GROUP_TYPE = "persongroup";
     public static final String PERSON_TYPE = "person";
     public static final String PROCESS_GROUP_TYPE = "process_group";
     public static final String PROCESS_TYPE = "process";
@@ -146,10 +146,10 @@ public final class NodeFactory {
             break;
         case DOCUMENT_GROUP_TYPE:
             node = new DocumentGroup();
-            break;         
+            break;
         case EXCEPTION_GROUP_TYPE:
             node = new ExceptionGroup();
-            break;          
+            break;
         case EXCEPTION_TYPE:
             node = new org.v2020.data.entity.iso.Exception();
             break;
@@ -194,7 +194,7 @@ public final class NodeFactory {
             break;
         case PERSON_GROUP_TYPE:
             node = new PersonGroup();
-            break;        
+            break;
         case FINDING_GROUP_TYPE:
             node = new FindingGroup();
             break;
@@ -215,7 +215,7 @@ public final class NodeFactory {
             break;
         case SAMT_TOPIC_TYPE:
             node = new SamtTopic();
-            break;        
+            break;
         default:
             LOG.warn("Unknown element type: " + type);
             node = new Node();

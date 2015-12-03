@@ -20,7 +20,7 @@
 package org.v2020.data.entity;
 
 /**
- * An external node (also known as an outer node, leaf node, or terminal node) 
+ * An external node (also known as an outer node, leaf node, or terminal node)
  * is any node that does not have child nodes.
  * 
  * @author Daniel Murygin <dm[at]sernet[dot]de>
@@ -30,9 +30,9 @@ public class ExternalNode extends Node {
     public ExternalNode() {
         super();
     }
-    
+
     public ExternalNode(String title) {
         super(title);
-    } 
+    }
 
 }
