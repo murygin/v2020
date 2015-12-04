@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<ui:composition template="/layout.xhtml">
+	<ui:define name="content">
+		<h:form>
+			<p:panel header="What do you see here?" >
+				<div style="height:50px">
+					This is a simple PrimeFaces 5 project running on Spring Boot 1.2.7
+				</div>
+			</p:panel>
+			<p:panel header="JSF 2.2 Bean Access">
+				Hello world!
+				<p:button value="Navigate"><f:param name="id" value="10" /></p:button>
+			</p:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

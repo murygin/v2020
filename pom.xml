@@ -35,9 +35,14 @@
         <version>${project.version}</version>
       </dependency>
       <dependency>
-          <groupId>org.v2020</groupId>
-          <artifactId>v2020-service</artifactId>
-          <version>${project.version}</version>
+        <groupId>org.v2020</groupId>
+        <artifactId>v2020-service</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.v2020</groupId>
+        <artifactId>v2020-primefaces</artifactId>
+        <version>${project.version}</version>
       </dependency>
       <dependency>
       	<groupId>ch.qos.logback</groupId>
@@ -82,6 +87,41 @@
         <groupId>org.springframework.data</groupId>
         <artifactId>spring-data-commons</artifactId>
         <version>1.11.0.RELEASE</version>
+      </dependency>
+      <dependency>
+      	<groupId>org.glassfish</groupId>
+      	<artifactId>javax.faces</artifactId>
+      	<version>2.2.12</version>
+      </dependency>
+      <dependency>
+      	<groupId>jstl</groupId>
+      	<artifactId>jstl</artifactId>
+      	<version>1.2</version>
+      </dependency>
+      <dependency>
+         <groupId>com.sun.el</groupId>
+         <artifactId>el-ri</artifactId>
+         <version>1.0</version>
+      </dependency>
+      <dependency>
+      	<groupId>javax.servlet</groupId>
+      	<artifactId>jstl</artifactId>
+      	<version>1.2</version>
+      </dependency>
+      <dependency>
+      	<groupId>org.apache.tomcat.embed</groupId>
+      	<artifactId>tomcat-embed-jasper</artifactId>
+      	<version>8.0.28</version>
+      </dependency>
+      <dependency>
+      	<groupId>org.primefaces</groupId>
+      	<artifactId>primefaces</artifactId>
+      	<version>5.3</version>
+      </dependency>
+      <dependency>
+          <groupId>org.primefaces.themes</groupId>
+          <artifactId>all-themes</artifactId>
+          <version>1.0.10</version>
       </dependency>
       <dependency>
         <groupId>org.neo4j</groupId>
@@ -153,7 +193,7 @@
     <module>v2020-service</module>
     <module>v2020-vna-import</module>
     <module>v2020-rest</module>
-    <!--<module>v2020-primefaces</module>-->
+    <module>v2020-primefaces</module>
   </modules>
 
   <properties>
@@ -183,6 +223,12 @@
       <id>spring-releases</id>
       <name>Spring Releases</name>
       <url>https://repo.spring.io/libs-release</url>
+    </repository>
+    <repository>
+      <id>prime-repo</id>
+      <name>PrimeFaces Maven Repository</name>
+      <url>http://repository.primefaces.org</url>
+      <layout>default</layout>  
     </repository>
   </repositories>
 
