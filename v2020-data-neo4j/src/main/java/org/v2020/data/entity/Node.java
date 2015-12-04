@@ -29,6 +29,8 @@ import org.neo4j.ogm.annotation.NodeEntity;
 import org.neo4j.ogm.annotation.Relationship;
 import org.neo4j.ogm.annotation.Transient;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 /**
  * 
  * Entity equality can be a grey area, and it is debatable whether natural keys
@@ -52,6 +54,7 @@ import org.neo4j.ogm.annotation.Transient;
  * @author Daniel Murygin <dm[at]sernet[dot]de>
  */
 @NodeEntity
+@JsonIgnoreProperties(value = { "parent" })
 public class Node {
 
     @GraphId

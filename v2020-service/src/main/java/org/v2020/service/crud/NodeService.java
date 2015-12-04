@@ -86,6 +86,7 @@ public class NodeService implements INodeService {
      * 
      * @see org.v2020.service.crud.INodeService#getNode(java.lang.Long)
      */
+    @SuppressWarnings("unchecked")
     @Override
     public <N extends Node> N getNode(Long id) {
         return (N) nodeRepository.findOne(id);

@@ -63,7 +63,13 @@ public class InternalNode extends Node {
         sb.append(super.toString());
         if (hasChildNotes()) {
             sb.append(", child notes: ");
+            boolean first = true;
             for (Node childNote : childNotes) {
+                if(!first) {
+                    sb.append(", ");
+                } else {
+                    first = false;
+                }
                 sb.append(childNote.toString());
             }
         }

@@ -1,12 +1,16 @@
 package org.v2020.rest;
 
 import java.util.List;
+import java.util.Set;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.v2020.data.entity.InternalNode;
 import org.v2020.data.entity.Node;
 import org.v2020.service.crud.INodeService;
 
@@ -23,6 +27,8 @@ import org.v2020.service.crud.INodeService;
 @RequestMapping(value = "/v2020")
 public class Controller {
 
+    private static Logger LOG = LoggerFactory.getLogger(Controller.class);
+    
     @Autowired
     INodeService nodeService;
 
@@ -35,9 +41,17 @@ public class Controller {
      *            The id of a node
      * @return The node
      */
-    @RequestMapping(value = "/node/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/node/{id}")
     public <N extends Node> N getNode(@PathVariable Long id) {
-        return getNodeService().getNode(id);
+        N node = getNodeService().getNode(id);
+        if (LOG.isDebugEnabled() && node !=null) {          
+            if(node instanceof InternalNode) {
+                LOG.debug("Returning: "  + ((InternalNode) node).toStringWithChildNotes());
+            } else {
+                LOG.debug("Returning: "  + node.toString());
+            }
+        }
+        return node;
     }
 
     /**
