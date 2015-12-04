@@ -1,3 +1,4 @@
 /target/
 /v2020-neo4j.db/
 /v2020-service.log
+neo4j-home
