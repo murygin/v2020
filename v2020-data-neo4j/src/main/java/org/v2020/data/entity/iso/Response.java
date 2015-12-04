@@ -32,6 +32,6 @@ public class Response extends ExternalNode {
 
     public Response(String title) {
         super(title);
-    }  
-    
+    }
+
 }

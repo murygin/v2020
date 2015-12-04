@@ -19,13 +19,13 @@
  ******************************************************************************/
 package org.v2020.data.dao.iso;
 
-import org.neo4j.graphdb.Node;
-import org.neo4j.graphdb.Relationship;
+import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.neo4j.template.Neo4jOperations;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
-import org.springframework.transaction.annotation.Transactional;
+import org.v2020.data.entity.Node;
 
 /**
  * @author Daniel Murygin <dm[at]sernet[dot]de>
@@ -33,18 +33,50 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 public class RelationshipDao implements IRelationshipDao {
 
-    @Autowired 
-    private Neo4jOperations neo4jOperations;
-    
-    /* (non-Javadoc)
-     * @see org.v2020.data.dao.iso.IRelationshipDao#createRelationshipBetween(java.lang.Long, java.lang.Long, java.lang.String)
+    private static final Logger LOG = LoggerFactory.getLogger(RelationshipDao.class);
+
+    @Autowired
+    private NodeRepository nodeRepository;
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * org.v2020.data.dao.iso.IRelationshipDao#createRelationshipBetween(java.
+     * lang.Long, java.lang.Long, java.lang.String)
      */
     @Override
-    @Transactional
-    public Relationship createRelationship(Long startNodeId, Long endNodeId, String type) {
-        Node startNode = neo4jOperations.getNode(startNodeId);
-        Node endNode = neo4jOperations.getNode(endNodeId);
-        return neo4jOperations.createRelationshipBetween(startNode, endNode, type, null);
+    public void createRelationship(Long startNodeId, Long endNodeId, String type) {
+        Node startNode = nodeRepository.findOne(startNodeId);
+        if (startNode == null) {
+            LOG.warn("Can not create relation, start node not found, id: " + startNodeId);
+            return;
+        }
+        addEdge(startNode, endNodeId, type);
+        nodeRepository.save(startNode, 1);
+    }
+
+    @Override
+    public void createRelationships(Long startNodeId, List<Long> endNodeIdList, String type) {
+        Node startNode = nodeRepository.findOne(startNodeId);
+        if (startNode == null) {
+            LOG.warn("Can not create relation, start node not found, id: " + startNodeId);
+            return;
+        }
+        for (Long endNodeId : endNodeIdList) {
+            addEdge(startNode, endNodeId, type);
+        }
+        nodeRepository.save(startNode, 1);
+    }
+
+    private void addEdge(Node startNode, Long endNodeId, String type) {
+        Node endNode = nodeRepository.findOne(endNodeId);
+        if (endNode == null) {
+            LOG.warn("Can not create relation, end node not found, id: " + endNodeId);
+            return;
+        }
+        startNode.addEdge(endNode, type);
+        return;
     }
 
 }

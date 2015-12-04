@@ -29,37 +29,47 @@ import org.apache.commons.cli.Options;
 public final class CommandLineOptions {
 
     public static final String FILE = "file";
-    
+    public static final String THREADS = "threads";
+    public static final String THREADS_DEFAULT = "1";
+
     private static Options options;
-    
-    private CommandLineOptions() {     
+
+    private CommandLineOptions() {
     }
-    
+
     public static Options get() {
-        if(options==null) {
+        if (options == null) {
             createOptions();
         }
         return options;
     }
 
- 
     private static void createOptions() {
         options = new Options();
         options.addOption(CommandLineOptions.createHelpOption());
         options.addOption(CommandLineOptions.createFileOption());
+        options.addOption(CommandLineOptions.createNumberOfThreadsOption());
     }
-    
+
     @SuppressWarnings("static-access")
     private static Option createFileOption() {
-        return OptionBuilder.withArgName( FILE )
-                .hasArg()
-                .isRequired()
-                .withDescription(  "use given VNA file (required)" )
-                .withLongOpt(FILE)
-                .create( "f");
+        OptionBuilder.withArgName(FILE);
+        OptionBuilder.hasArg();
+        OptionBuilder.isRequired();
+        OptionBuilder.withDescription("use given VNA file (required)");
+        OptionBuilder.withLongOpt(FILE);
+        return OptionBuilder.create("f");
     }
-    
+
+    private static Option createNumberOfThreadsOption() {
+        OptionBuilder.withArgName(THREADS);
+        OptionBuilder.hasArg();
+        OptionBuilder.withDescription("number of threads (default: " + THREADS_DEFAULT + ")");
+        OptionBuilder.withLongOpt(THREADS);
+        return OptionBuilder.create("t");
+    }
+
     private static Option createHelpOption() {
-        return new Option( "h", "help", false, "print this message" );
+        return new Option("h", "help", false, "print this message");
     }
 }

@@ -25,16 +25,16 @@ import org.v2020.data.entity.ExternalNode;
  * @author Daniel Murygin <dm[at]sernet[dot]de>
  */
 public class Control extends ExternalNode {
-    
+
     public static final String PROP_MATURITY = "control_maturity"; //$NON-NLS-1$
     public static final String PROP_MATURITY_DUEDATE = "control_maturity_duedate"; //$NON-NLS-1$
-    
+
     public Control() {
         super();
     }
 
     public Control(String title) {
         super(title);
-    }   
-    
+    }
+
 }

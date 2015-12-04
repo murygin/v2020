@@ -25,13 +25,13 @@ import org.v2020.data.entity.ExternalNode;
  * @author Daniel Murygin <dm[at]sernet[dot]de>
  */
 public class Exception extends ExternalNode {
-    
+
     public Exception() {
         super();
     }
 
     public Exception(String title) {
         super(title);
-    }   
-   
+    }
+
 }

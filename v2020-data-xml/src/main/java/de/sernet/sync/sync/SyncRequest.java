@@ -5,7 +5,6 @@
 // Generated on: 2015.02.04 at 09:45:25 PM MEZ 
 //
 
-
 package de.sernet.sync.sync;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -14,14 +13,17 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
+
 import de.sernet.sync.data.SyncData;
 import de.sernet.sync.mapping.SyncMapping;
 
-
 /**
- * <p>Java class for anonymous complex type.
+ * <p>
+ * Java class for anonymous complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * The following schema fragment specifies the expected content contained within
+ * this class.
  * 
  * <pre>
  * &lt;complexType>
@@ -43,10 +45,7 @@ import de.sernet.sync.mapping.SyncMapping;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = {
-    "syncData",
-    "syncMapping"
-})
+@XmlType(name = "", propOrder = { "syncData", "syncMapping" })
 @XmlRootElement(name = "syncRequest")
 public class SyncRequest {
 
@@ -66,10 +65,8 @@ public class SyncRequest {
     /**
      * Gets the value of the syncData property.
      * 
-     * @return
-     *     possible object is
-     *     {@link SyncData }
-     *     
+     * @return possible object is {@link SyncData }
+     * 
      */
     public SyncData getSyncData() {
         return syncData;
@@ -79,9 +76,8 @@ public class SyncRequest {
      * Sets the value of the syncData property.
      * 
      * @param value
-     *     allowed object is
-     *     {@link SyncData }
-     *     
+     *            allowed object is {@link SyncData }
+     * 
      */
     public void setSyncData(SyncData value) {
         this.syncData = value;
@@ -90,10 +86,8 @@ public class SyncRequest {
     /**
      * Gets the value of the syncMapping property.
      * 
-     * @return
-     *     possible object is
-     *     {@link SyncMapping }
-     *     
+     * @return possible object is {@link SyncMapping }
+     * 
      */
     public SyncMapping getSyncMapping() {
         return syncMapping;
@@ -103,9 +97,8 @@ public class SyncRequest {
      * Sets the value of the syncMapping property.
      * 
      * @param value
-     *     allowed object is
-     *     {@link SyncMapping }
-     *     
+     *            allowed object is {@link SyncMapping }
+     * 
      */
     public void setSyncMapping(SyncMapping value) {
         this.syncMapping = value;
@@ -114,10 +107,8 @@ public class SyncRequest {
     /**
      * Gets the value of the sourceId property.
      * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return possible object is {@link String }
+     * 
      */
     public String getSourceId() {
         return sourceId;
@@ -127,9 +118,8 @@ public class SyncRequest {
      * Sets the value of the sourceId property.
      * 
      * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *            allowed object is {@link String }
+     * 
      */
     public void setSourceId(String value) {
         this.sourceId = value;
@@ -138,10 +128,8 @@ public class SyncRequest {
     /**
      * Gets the value of the insert property.
      * 
-     * @return
-     *     possible object is
-     *     {@link Boolean }
-     *     
+     * @return possible object is {@link Boolean }
+     * 
      */
     public boolean isInsert() {
         if (insert == null) {
@@ -155,9 +143,8 @@ public class SyncRequest {
      * Sets the value of the insert property.
      * 
      * @param value
-     *     allowed object is
-     *     {@link Boolean }
-     *     
+     *            allowed object is {@link Boolean }
+     * 
      */
     public void setInsert(Boolean value) {
         this.insert = value;
@@ -166,10 +153,8 @@ public class SyncRequest {
     /**
      * Gets the value of the update property.
      * 
-     * @return
-     *     possible object is
-     *     {@link Boolean }
-     *     
+     * @return possible object is {@link Boolean }
+     * 
      */
     public boolean isUpdate() {
         if (update == null) {
@@ -183,9 +168,8 @@ public class SyncRequest {
      * Sets the value of the update property.
      * 
      * @param value
-     *     allowed object is
-     *     {@link Boolean }
-     *     
+     *            allowed object is {@link Boolean }
+     * 
      */
     public void setUpdate(Boolean value) {
         this.update = value;
@@ -194,10 +178,8 @@ public class SyncRequest {
     /**
      * Gets the value of the delete property.
      * 
-     * @return
-     *     possible object is
-     *     {@link Boolean }
-     *     
+     * @return possible object is {@link Boolean }
+     * 
      */
     public boolean isDelete() {
         if (delete == null) {
@@ -211,9 +193,8 @@ public class SyncRequest {
      * Sets the value of the delete property.
      * 
      * @param value
-     *     allowed object is
-     *     {@link Boolean }
-     *     
+     *            allowed object is {@link Boolean }
+     * 
      */
     public void setDelete(Boolean value) {
         this.delete = value;

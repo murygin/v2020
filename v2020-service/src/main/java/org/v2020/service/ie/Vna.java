@@ -28,7 +28,6 @@ import java.util.UUID;
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.data.neo4j.support.Neo4jTemplate;
 import org.v2020.util.io.Archive;
 import org.v2020.util.xml.XmlIO;
 
@@ -39,9 +38,9 @@ import de.sernet.sync.sync.SyncRequest;
  */
 public class Vna implements Serializable {
 
-    private static final long serialVersionUID = -1322849916526042517L;
+    private static final long serialVersionUID = 4563763042849838627L;
 
-    private static final Logger LOG = LoggerFactory.getLogger(Neo4jTemplate.class);
+    private static final Logger LOG = LoggerFactory.getLogger(Vna.class);
 
     public static final String EXTENSION_VERINICE_ARCHIVE = ".vna"; //$NON-NLS-1$
     public static final String VERINICE_XML = "verinice.xml"; //$NON-NLS-1$
@@ -49,28 +48,24 @@ public class Vna implements Serializable {
     public static final String MAPPING_XSD = "mapping.xsd"; //$NON-NLS-1$
     public static final String SYNC_XSD = "sync.xsd"; //$NON-NLS-1$
     public static final String README_TXT = "readme.txt"; //$NON-NLS-1$
-    
-    public static final String[] ALL_STATIC_FILES = new String[]{
-        VERINICE_XML,
-        DATA_XSD,
-        MAPPING_XSD,
-        SYNC_XSD,
-        README_TXT,
-    };
-    
+
+    private static final String[] ALL_STATIC_FILES = new String[] { VERINICE_XML, DATA_XSD, MAPPING_XSD, SYNC_XSD, README_TXT, };
+
     static {
         Arrays.sort(ALL_STATIC_FILES);
     }
-    
-    private String uuid;   
-    private String tempFileName = null;    
+
+    private String uuid;
+    private String tempFileName = null;
     public static final String FILES = "files"; //$NON-NLS-1$
 
     /**
-     * Creates a verinice archive instance out of <code>byte[] data</code>. 
+     * Creates a verinice archive instance out of <code>byte[] data</code>.
      * 
-     * @param data Data of a verinice archive (VNA, zip archive)
-     * @throws VnaNotValidException In case of a missing entry in a VNA
+     * @param data
+     *            Data of a verinice archive (VNA, zip archive)
+     * @throws VnaNotValidException
+     *             In case of a missing entry in a VNA
      */
     public Vna(byte[] data) throws VnaNotValidException {
         super();
@@ -79,13 +74,13 @@ public class Vna implements Serializable {
             LOG.debug("Creating new Vna...");
         }
         try {
-            Archive.extractZipArchive(data, getTempFileName());           
+            Archive.extractZipArchive(data, getTempFileName());
         } catch (Exception e) {
             LOG.error("Error while reading verinice archive", e);
             throw new VnaNotValidException(e);
         }
     }
-    
+
     public byte[] getFileData(String fileName) {
         String fullPath = getPathToTempFile(fileName);
         try {
@@ -97,31 +92,33 @@ public class Vna implements Serializable {
     }
 
     private String getPathToTempFile(String fileName) {
-        StringBuilder sb = new StringBuilder();       
+        StringBuilder sb = new StringBuilder();
         sb.append(getTempFileName()).append(File.separator).append(fileName);
         String fullPath = sb.toString();
         return fullPath;
     }
-    
+
     /**
-     * Returns file verinice.xml from the archive.
-     * If there is no verinice.xml in the archive null is returned.
+     * Returns file verinice.xml from the archive. If there is no verinice.xml
+     * in the archive null is returned.
      * 
      * @return verinice.xml from the archive
      */
     public byte[] getXmlFileData() {
         return getFileData(VERINICE_XML);
     }
-    
+
     public String getXmlFilePath() {
         return getPathToTempFile(VERINICE_XML);
     }
-    
+
     public SyncRequest getXml() {
-        return XmlIO.read( getXmlFilePath(), SyncRequest.class);      
+        return XmlIO.read(getXmlFilePath(), SyncRequest.class);
     }
-    
-    /* (non-Javadoc)
+
+    /*
+     * (non-Javadoc)
+     * 
      * @see sernet.verinice.service.sync.IVeriniceArchive#clear()
      */
     public void clear() {
@@ -136,9 +133,8 @@ public class Vna implements Serializable {
         return uuid;
     }
 
-    
     public String getTempFileName() {
-        if(tempFileName==null) {
+        if (tempFileName == null) {
             tempFileName = createTempFileName(getUuid());
         }
         return tempFileName;
@@ -147,7 +143,7 @@ public class Vna implements Serializable {
     private static String createTempFileName(String uuid) {
         String tempDir = System.getProperty("java.io.tmpdir");
         StringBuilder sb = new StringBuilder().append(tempDir);
-        if(!tempDir.endsWith(String.valueOf(File.separatorChar))) {
+        if (!tempDir.endsWith(String.valueOf(File.separatorChar))) {
             sb.append(File.separatorChar);
         }
         return sb.append(uuid).toString();

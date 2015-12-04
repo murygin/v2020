@@ -22,23 +22,23 @@ package org.v2020.data.entity;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.neo4j.graphdb.Direction;
-import org.springframework.data.neo4j.annotation.RelatedTo;
+import org.neo4j.ogm.annotation.Relationship;
+
 /**
- * An internal node (also known as an inner node, inode for short, or branch node) 
- * is any node of a tree that has child nodes.
+ * An internal node (also known as an inner node, inode for short, or branch
+ * node) is any node of a tree that has child nodes.
  * 
  * @author Daniel Murygin <dm[at]sernet[dot]de>
  */
 public class InternalNode extends Node {
 
-    @RelatedTo(type = "CHILD", direction = Direction.OUTGOING)
+    @Relationship(type = "CHILD", direction = Relationship.OUTGOING)
     private Set<Node> childNotes;
-    
+
     public InternalNode() {
         super();
     }
-    
+
     public InternalNode(String title) {
         super(title);
     }
@@ -49,24 +49,30 @@ public class InternalNode extends Node {
         }
         return childNotes;
     }
-    
-    public void addChildNote(Node node) {     
+
+    public void addChildNote(Node node) {
         getChildNotes().add(node);
     }
-     
+
     public boolean hasChildNotes() {
         return !(getChildNotes().isEmpty());
     }
-    
+
     public String toStringWithChildNotes() {
-        StringBuilder sb = new StringBuilder();     
+        StringBuilder sb = new StringBuilder();
         sb.append(super.toString());
-        if(hasChildNotes()) {
+        if (hasChildNotes()) {
             sb.append(", child notes: ");
+            boolean first = true;
             for (Node childNote : childNotes) {
+                if(!first) {
+                    sb.append(", ");
+                } else {
+                    first = false;
+                }
                 sb.append(childNote.toString());
-            }         
-        } 
+            }
+        }
         return sb.toString();
     }
 }

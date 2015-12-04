@@ -35,7 +35,7 @@ import org.xml.sax.SAXException;
  * @author Daniel Murygin <dm[at]sernet[dot]de>
  */
 public final class XmlIO {
-    
+
     private XmlIO() {
         // do not instantiate this class
     }
@@ -43,7 +43,7 @@ public final class XmlIO {
     public static <T> T read(String xmlFileName, Class<T> clazz) {
         return javax.xml.bind.JAXB.unmarshal(new File(xmlFileName), clazz);
     }
-    
+
     public static <T> T read(String xsdSchemaFileName, String xmlFileName, Class<T> clazz) throws JAXBException, SAXException {
         // Schema und JAXBContext are thread safe
         SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);

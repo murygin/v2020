@@ -33,9 +33,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.IntegrationTest;
-import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.v2020.service.Application;
+import org.v2020.data.DataNeo4jTestConfiguration;
 import org.v2020.service.ie.IVnaImport;
 import org.v2020.service.ie.Vna;
 import org.v2020.util.io.FileSystem;
@@ -49,29 +49,29 @@ import de.sernet.sync.sync.SyncRequest;
  * @author Daniel Murygin <dm[at]sernet[dot]de>
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = Application.class)
+@ContextConfiguration(classes = DataNeo4jTestConfiguration.class)
 @IntegrationTest
 public class VnaImportTest {
 
     private static final Logger LOG = LoggerFactory.getLogger(VnaImportTest.class);
-    
+
     public static final String RISK_CATALOG_FILE_NAME = "BusinessImpactInheritenceTest.vna";
-    
+
     @Autowired
     IVnaImport vnaImport;
-    
+
     @Test
-    public void testVna() throws Exception {            
+    public void testVna() throws Exception {
         byte[] vnaFileData = FileSystem.readByteArrayFromClasspath(RISK_CATALOG_FILE_NAME);
         assertNotNull("File data is null, file name: " + RISK_CATALOG_FILE_NAME, vnaFileData);
         Vna vna = new Vna(vnaFileData);
-        byte[] xmlFiledata = vna.getXmlFileData();      
+        byte[] xmlFiledata = vna.getXmlFileData();
         assertNotNull("Xml file data is null.", xmlFiledata);
         SyncRequest syncRequest = vna.getXml();
         assertNotNull("SyncRequest is null.", syncRequest);
         SyncData syncData = syncRequest.getSyncData();
-        assertNotNull("SyncData is null.", syncData);    
-        List<SyncObject>  syncObjects = syncData.getSyncObject();
+        assertNotNull("SyncData is null.", syncData);
+        List<SyncObject> syncObjects = syncData.getSyncObject();
         assertNotNull("SyncObject list is null.", syncObjects);
         assertFalse("SyncObject list is empty.", syncObjects.isEmpty());
         SyncObject syncObject = syncObjects.get(0);
@@ -79,12 +79,13 @@ public class VnaImportTest {
         vna.clear();
         assertFalse("Temp folder still exists: " + vna.getTempFileName(), Files.exists(Paths.get(vna.getTempFileName()), LinkOption.NOFOLLOW_LINKS));
     }
-    
+
     @Test
     public void testVnaImport() throws Exception {
         long start = System.currentTimeMillis();
         byte[] vnaFileData = FileSystem.readByteArrayFromClasspath(RISK_CATALOG_FILE_NAME);
         assertNotNull("File data is null, file name: " + RISK_CATALOG_FILE_NAME, vnaFileData);
+        vnaImport.setNumberOfThreads(1);
         vnaImport.importVna(vnaFileData);
         if (LOG.isInfoEnabled()) {
             long ms = System.currentTimeMillis() - start;

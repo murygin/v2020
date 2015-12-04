@@ -17,20 +17,36 @@
  * Contributors:
  *     Daniel Murygin <dm[at]sernet[dot]de> - initial API and implementation
  ******************************************************************************/
-package org.v2020.data.dao.iso;
+package org.v2020.data;
 
-import java.util.List;
-
-import org.v2020.data.entity.Node;
+import org.neo4j.ogm.session.SessionFactory;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.data.neo4j.config.Neo4jConfiguration;
+import org.springframework.data.neo4j.repository.config.EnableNeo4jRepositories;
+import org.springframework.data.neo4j.server.Neo4jServer;
+import org.springframework.data.neo4j.server.RemoteServer;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
  * @author Daniel Murygin <dm[at]sernet[dot]de>
  */
-public interface INodeDao {
+@Configuration
+@EnableNeo4jRepositories(basePackages = "org.v2020.data")
+@EnableTransactionManagement
+public class DataNeo4jConfiguration extends Neo4jConfiguration {
 
-    <N extends Node> N save(N node);
-    
-    <N extends Node> N get(Long id);
-    
-    <N extends Node> List<N> findByClass(String className);
+    @Bean
+    @Override
+    public Neo4jServer neo4jServer() {
+        return new RemoteServer("http://localhost:7474", "neo4j", "5erne1");
+    }
+
+    @Bean
+    @Override
+    public SessionFactory getSessionFactory() {
+        // with domain entity base package(s)
+        return new SessionFactory("org.v2020.data.entity");
+    }
+
 }

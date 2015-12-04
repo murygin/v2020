@@ -33,7 +33,7 @@ public final class TimeFormatter {
 
     public static String getHumanRedableTime(long ms) {
         long miliseconds = Math.round(ms % 1000);
-        double x = ms / 1000.0;       
+        double x = ms / 1000.0;
         long seconds = Math.round(x % 60);
         x /= 60;
         long minutes = Math.round(x % 60);
@@ -42,34 +42,34 @@ public final class TimeFormatter {
         x /= 24;
         long days = Math.round(x);
         StringBuilder sb = new StringBuilder();
-        if(days>0) {
+        if (days > 0) {
             sb.append(days).append(" d");
         }
-        if(hours>0) {
-            if(sb.length()>0) {
+        if (hours > 0) {
+            if (sb.length() > 0) {
                 sb.append(", ");
             }
             sb.append(hours).append(" h");
         }
-        if(minutes>0 && days<1) {
-            if(sb.length()>0) {
+        if (minutes > 0 && days < 1) {
+            if (sb.length() > 0) {
                 sb.append(", ");
             }
             sb.append(minutes).append(" m");
         }
-        if(seconds>0 && hours<1) {
-            if(sb.length()>0) {
+        if (seconds > 0 && hours < 1) {
+            if (sb.length() > 0) {
                 sb.append(", ");
             }
             sb.append(seconds).append(" s");
         }
-        if(miliseconds>0 && seconds<1) {
-            if(sb.length()>0) {
+        if (miliseconds > 0 && seconds < 1) {
+            if (sb.length() > 0) {
                 sb.append(", ");
             }
             sb.append(miliseconds).append(" ms");
         }
-        return sb.toString();     
+        return sb.toString();
     }
-    
+
 }

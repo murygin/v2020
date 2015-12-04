@@ -5,11 +5,11 @@
 // Generated on: 2015.02.04 at 09:45:25 PM MEZ 
 //
 
-
 package de.sernet.sync.mapping;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -20,11 +20,13 @@ import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
-
 /**
- * <p>Java class for anonymous complex type.
+ * <p>
+ * Java class for anonymous complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * The following schema fragment specifies the expected content contained within
+ * this class.
  * 
  * <pre>
  * &lt;complexType>
@@ -62,9 +64,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = {
-    "mapObjectType"
-})
+@XmlType(name = "", propOrder = { "mapObjectType" })
 @XmlRootElement(name = "syncMapping")
 public class SyncMapping {
 
@@ -74,15 +74,16 @@ public class SyncMapping {
      * Gets the value of the mapObjectType property.
      * 
      * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the mapObjectType property.
+     * This accessor method returns a reference to the live list, not a
+     * snapshot. Therefore any modification you make to the returned list will
+     * be present inside the JAXB object. This is why there is not a
+     * <CODE>set</CODE> method for the mapObjectType property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
+     * 
      * <pre>
-     *    getMapObjectType().add(newItem);
+     * getMapObjectType().add(newItem);
      * </pre>
      * 
      * 
@@ -99,11 +100,13 @@ public class SyncMapping {
         return this.mapObjectType;
     }
 
-
     /**
-     * <p>Java class for anonymous complex type.
+     * <p>
+     * Java class for anonymous complex type.
      * 
-     * <p>The following schema fragment specifies the expected content contained within this class.
+     * <p>
+     * The following schema fragment specifies the expected content contained
+     * within this class.
      * 
      * <pre>
      * &lt;complexType>
@@ -131,9 +134,7 @@ public class SyncMapping {
      * 
      */
     @XmlAccessorType(XmlAccessType.FIELD)
-    @XmlType(name = "", propOrder = {
-        "mapAttributeType"
-    })
+    @XmlType(name = "", propOrder = { "mapAttributeType" })
     public static class MapObjectType {
 
         protected List<SyncMapping.MapObjectType.MapAttributeType> mapAttributeType;
@@ -149,15 +150,16 @@ public class SyncMapping {
          * Gets the value of the mapAttributeType property.
          * 
          * <p>
-         * This accessor method returns a reference to the live list,
-         * not a snapshot. Therefore any modification you make to the
-         * returned list will be present inside the JAXB object.
-         * This is why there is not a <CODE>set</CODE> method for the mapAttributeType property.
+         * This accessor method returns a reference to the live list, not a
+         * snapshot. Therefore any modification you make to the returned list
+         * will be present inside the JAXB object. This is why there is not a
+         * <CODE>set</CODE> method for the mapAttributeType property.
          * 
          * <p>
          * For example, to add a new item, do as follows:
+         * 
          * <pre>
-         *    getMapAttributeType().add(newItem);
+         * getMapAttributeType().add(newItem);
          * </pre>
          * 
          * 
@@ -177,10 +179,8 @@ public class SyncMapping {
         /**
          * Gets the value of the extId property.
          * 
-         * @return
-         *     possible object is
-         *     {@link String }
-         *     
+         * @return possible object is {@link String }
+         * 
          */
         public String getExtId() {
             return extId;
@@ -190,9 +190,8 @@ public class SyncMapping {
          * Sets the value of the extId property.
          * 
          * @param value
-         *     allowed object is
-         *     {@link String }
-         *     
+         *            allowed object is {@link String }
+         * 
          */
         public void setExtId(String value) {
             this.extId = value;
@@ -201,10 +200,8 @@ public class SyncMapping {
         /**
          * Gets the value of the intId property.
          * 
-         * @return
-         *     possible object is
-         *     {@link String }
-         *     
+         * @return possible object is {@link String }
+         * 
          */
         public String getIntId() {
             return intId;
@@ -214,19 +211,20 @@ public class SyncMapping {
          * Sets the value of the intId property.
          * 
          * @param value
-         *     allowed object is
-         *     {@link String }
-         *     
+         *            allowed object is {@link String }
+         * 
          */
         public void setIntId(String value) {
             this.intId = value;
         }
 
-
         /**
-         * <p>Java class for anonymous complex type.
+         * <p>
+         * Java class for anonymous complex type.
          * 
-         * <p>The following schema fragment specifies the expected content contained within this class.
+         * <p>
+         * The following schema fragment specifies the expected content
+         * contained within this class.
          * 
          * <pre>
          * &lt;complexType>
@@ -253,10 +251,8 @@ public class SyncMapping {
             /**
              * Gets the value of the extId property.
              * 
-             * @return
-             *     possible object is
-             *     {@link String }
-             *     
+             * @return possible object is {@link String }
+             * 
              */
             public String getExtId() {
                 return extId;
@@ -266,9 +262,8 @@ public class SyncMapping {
              * Sets the value of the extId property.
              * 
              * @param value
-             *     allowed object is
-             *     {@link String }
-             *     
+             *            allowed object is {@link String }
+             * 
              */
             public void setExtId(String value) {
                 this.extId = value;
@@ -277,10 +272,8 @@ public class SyncMapping {
             /**
              * Gets the value of the intId property.
              * 
-             * @return
-             *     possible object is
-             *     {@link String }
-             *     
+             * @return possible object is {@link String }
+             * 
              */
             public String getIntId() {
                 return intId;
@@ -290,9 +283,8 @@ public class SyncMapping {
              * Sets the value of the intId property.
              * 
              * @param value
-             *     allowed object is
-             *     {@link String }
-             *     
+             *            allowed object is {@link String }
+             * 
              */
             public void setIntId(String value) {
                 this.intId = value;

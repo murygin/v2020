@@ -1,4 +1,5 @@
 package org.v2020.service.ie;
+
 import java.util.concurrent.Callable;
 
 import org.slf4j.Logger;
@@ -32,12 +33,12 @@ import org.v2020.service.crud.INodeService;
 public class LinkImportThread implements Callable<LinkImportContext> {
 
     private static final Logger LOG = LoggerFactory.getLogger(LinkImportThread.class);
-    
+
     private LinkImportContext context;
-    
+
     @Autowired
     private INodeService nodeService;
-    
+
     public LinkImportThread() {
         super();
     }
@@ -47,24 +48,29 @@ public class LinkImportThread implements Callable<LinkImportContext> {
         this.context = context;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see java.util.concurrent.Callable#call()
      */
     @Override
     public LinkImportContext call() throws Exception {
         try {
             importLink();
-        } catch(Exception e) {
-            LOG.error("Error while importing link.", e);
+            if (LOG.isDebugEnabled()) {
+                LOG.debug("Link imported, start id: " + context.getStartId() + ", end id: " + context.getEndIdList());
+            }
+        } catch (Exception e) {
+            LOG.error("Error while importing link, start id: " + context.getStartId() + ", end id: " + context.getEndIdList(), e);
         }
         return context;
     }
 
     private void importLink() {
-        nodeService.createRelationship(context.getStartId(), context.getEndId(), context.getType());  
         if (LOG.isDebugEnabled()) {
-            LOG.debug("Link imported, start id: " + context.getStartId() + ", end id: " + context.getEndId());
+            LOG.debug("Start importing link, start id: " + context.getStartId() + ", end id: " + context.getEndIdList() + "...");
         }
+        nodeService.createRelationships(context.getStartId(), context.getEndIdList(), context.getType());
     }
 
     public void setContext(LinkImportContext context) {

@@ -21,7 +21,6 @@ package org.v2020.data.entity.iso;
 
 import org.v2020.data.entity.InternalNode;
 
-
 /**
  * @author Daniel Murygin <dm[at]sernet[dot]de>
  */
@@ -33,6 +32,6 @@ public class IncidentGroup extends InternalNode {
 
     public IncidentGroup(String title) {
         super(title);
-    }   
+    }
 
 }

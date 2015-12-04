@@ -22,14 +22,14 @@ package org.v2020.data.entity.iso;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.springframework.data.neo4j.annotation.RelatedToVia;
+import org.neo4j.ogm.annotation.Relationship;
 import org.v2020.data.entity.ExternalNode;
 
 /**
  * @author Daniel Murygin <dm[at]sernet[dot]de>
  */
 public class Scenario extends ExternalNode {
-    
+
     public Scenario() {
         super();
     }
@@ -37,21 +37,21 @@ public class Scenario extends ExternalNode {
     public Scenario(String title) {
         super(title);
     }
-    
-    @RelatedToVia
+
+    @Relationship
     Set<ScenarioAsset> scenarioAsset;
-    
+
     public Set<ScenarioAsset> getScenarioAssets() {
         if (scenarioAsset == null) {
             scenarioAsset = new HashSet<ScenarioAsset>();
         }
         return scenarioAsset;
     }
-    
-    public void addScenarioAssets(ScenarioAsset edge) {     
+
+    public void addScenarioAssets(ScenarioAsset edge) {
         getScenarioAssets().add(edge);
     }
-     
+
     public boolean hasAScenarioAssets() {
         return !(getScenarioAssets().isEmpty());
     }

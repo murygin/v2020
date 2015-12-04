@@ -25,7 +25,7 @@ import org.v2020.data.entity.ExternalNode;
  * @author Daniel Murygin <dm[at]sernet[dot]de>
  */
 public class SamtTopic extends ExternalNode {
-    
+
     public SamtTopic() {
         super();
     }

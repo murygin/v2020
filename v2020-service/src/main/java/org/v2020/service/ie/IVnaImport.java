@@ -25,4 +25,6 @@ package org.v2020.service.ie;
 public interface IVnaImport {
 
     void importVna(byte[] vnaFileData);
+
+    void setNumberOfThreads(int numberOfThreads);
 }

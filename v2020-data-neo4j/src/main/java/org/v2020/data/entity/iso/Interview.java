@@ -25,13 +25,13 @@ import org.v2020.data.entity.ExternalNode;
  * @author Daniel Murygin <dm[at]sernet[dot]de>
  */
 public class Interview extends ExternalNode {
-    
+
     public Interview() {
         super();
     }
 
     public Interview(String title) {
         super(title);
-    }   
-    
+    }
+
 }
