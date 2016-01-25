@@ -29,7 +29,7 @@ public class Application extends SpringBootServletInitializer implements Servlet
     
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-        return application.sources(Application.class, Initializer.class);
+        return application.sources(Application.class);
     }
     
 
@@ -51,5 +51,6 @@ public class Application extends SpringBootServletInitializer implements Servlet
     public void setServletContext(ServletContext servletContext) {
         servletContext.setInitParameter("com.sun.faces.forceLoadConfiguration", Boolean.TRUE.toString());
     }
+    
     
 }

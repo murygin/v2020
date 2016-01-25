@@ -15,9 +15,9 @@
 					This is a simple PrimeFaces 5 project running on Spring Boot 1.2.7
 				</div>
 			</p:panel>
-			<p:panel header="JSF 2.2 Bean Access">
-				Hello world!
-				<p:button value="Navigate"><f:param name="id" value="10" /></p:button>
+			<p:panel header="#{nodeBean.node.title}">
+				<p:inputText id="messageInput" value="#{nodeBean.id}"/>
+				<h:commandButton value="Send" id="button" actionListener="#{nodeBean.load}" />
 			</p:panel>
 		</h:form>
 	</ui:define>
