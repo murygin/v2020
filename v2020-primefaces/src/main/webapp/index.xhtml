@@ -10,15 +10,12 @@
 <ui:composition template="/layout.xhtml">
 	<ui:define name="content">
 		<h:form>
-			<p:panel header="What do you see here?" >
-				<div style="height:50px">
-					This is a simple PrimeFaces 5 project running on Spring Boot 1.2.7
-				</div>
-			</p:panel>
-			<p:panel header="#{nodeBean.node.title}">
-				<p:inputText id="messageInput" value="#{nodeBean.id}"/>
-				<h:commandButton value="Send" id="button" actionListener="#{nodeBean.load}" />
-			</p:panel>
+			<p:tree id="tree" value="#{treeBean.root}" var="node" dynamic="true" cache="false">
+        <p:ajax event="expand" listener="#{treeBean.onNodeExpand}" />
+        <p:treeNode>
+            <h:outputText value="#{node}" />
+        </p:treeNode>
+    	</p:tree>
 		</h:form>
 	</ui:define>
 </ui:composition>
