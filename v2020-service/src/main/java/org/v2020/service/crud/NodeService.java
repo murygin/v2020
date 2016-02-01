@@ -89,7 +89,7 @@ public class NodeService implements INodeService {
     @SuppressWarnings("unchecked")
     @Override
     public <N extends Node> N getNode(Long id) {
-        return (N) nodeRepository.findOne(id);
+        return (N) nodeRepository.findOne(id, 2);
     }
 
     /*

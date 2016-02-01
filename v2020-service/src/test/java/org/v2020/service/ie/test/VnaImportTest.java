@@ -35,7 +35,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.IntegrationTest;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.v2020.data.DataNeo4jTestConfiguration;
 import org.v2020.service.ie.IVnaImport;
 import org.v2020.service.ie.Vna;
 import org.v2020.util.io.FileSystem;

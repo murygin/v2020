@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.v2020.data.entity.InternalNode;
 import org.v2020.data.entity.Node;
+import org.v2020.data.entity.iso.Organization;
 import org.v2020.service.crud.INodeService;
 
 @Component
@@ -58,8 +59,13 @@ public class TreeBean {
     private void createTreeNode(TreeNode parent, Node node) {
         PrimefacesTreeNode treeNode = new PrimefacesTreeNode(node.getTitle(), parent); 
         treeNode.setNodeId(node.getId());
-        // Create Dummy node, just to make the parent node expandable
-        new DefaultTreeNode("DUMMY", treeNode);
+        if(node instanceof InternalNode) {
+            InternalNode internalNode = (InternalNode)node;
+            if(internalNode.hasChildNotes() ) {
+                // Create Dummy node, just to make the parent node expandable
+                new DefaultTreeNode("DUMMY", treeNode);
+            }
+        }
     }
     
     public TreeNode getRoot() {

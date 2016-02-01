@@ -24,7 +24,6 @@ import org.springframework.boot.test.IntegrationTest;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
-import org.v2020.data.DataNeo4jTestConfiguration;
 import org.v2020.data.dao.iso.NodeRepository;
 import org.v2020.data.entity.Edge;
 import org.v2020.data.entity.Node;
@@ -245,7 +244,7 @@ public class Neo4jDaoTest {
         }
         List<Node> orgList = nodeRepository.findByClass(Organization.class.getName());
         assertNotNull("Organization list is null", orgList);
-        assertTrue("Organization list size is not: " + n, orgList.size() >= n);
+        assertTrue("Organization list size (" + orgList.size() + ") is not: " + n, orgList.size() >= n);
         for (Node org : orgCreateList) {
             assertTrue("Org not found: " + org.getTitle(), orgList.contains(org));
             deleteNodeIfConfigured(org);
