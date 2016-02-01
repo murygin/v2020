@@ -37,6 +37,15 @@ public class Edge extends AbstractEdge<Node, Node> {
 
     private String type;
 
+    public Edge() {
+        super();
+    }
+
+    public Edge(String comment) {
+        super(comment);
+        // TODO Auto-generated constructor stub
+    }
+
     public Edge(Node startNode, Node endNode, String type) {
         super();
         this.startNode = startNode;

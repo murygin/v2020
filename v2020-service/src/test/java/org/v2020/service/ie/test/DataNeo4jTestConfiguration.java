@@ -1,3 +1,4 @@
+package org.v2020.service.ie.test;
 /*******************************************************************************
  * Copyright (c) 2015 Daniel Murygin.
  *
@@ -17,7 +18,7 @@
  * Contributors:
  *     Daniel Murygin <dm[at]sernet[dot]de> - initial API and implementation
  ******************************************************************************/
-package org.v2020.data;
+
 
 import org.neo4j.ogm.session.Session;
 import org.neo4j.ogm.session.SessionFactory;
@@ -35,7 +36,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  * @author Daniel Murygin <dm[at]sernet[dot]de>
  */
 
-@Configuration
+@Configuration("v2020-service-test-configuration")
 @ComponentScan("org.v2020")
 @EnableAutoConfiguration
 @EnableNeo4jRepositories("org.v2020.data.dao")
