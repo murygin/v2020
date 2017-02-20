@@ -3,7 +3,7 @@ v2020
 
 A protoype application with REST interface powered by Neo4j and Spring Boot.
 
-Development of this application ist stoped because of a missing feature in Spring Data Neo4j: [DATAGRAPH-555
+Development of this application ist stopped because of a missing feature in Spring Data Neo4j: [DATAGRAPH-555
 Support DynamicProperties](https://jira.spring.io/browse/DATAGRAPH-555).
 
 Build and run
